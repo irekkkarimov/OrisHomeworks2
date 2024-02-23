@@ -1,43 +1,33 @@
 import {useEffect, useState} from "react";
+import typeColors from "../utils/typeColors";
 
 
-const Card = ({pokemon, show}) => {
-    const [types, setTypes] = useState([])
-    let pokemonUrlSplit = pokemon.url.split('/')
-    let pokemonId = pokemonUrlSplit[pokemonUrlSplit.length - 2]
-
-    useEffect(() => {
-        fetch(pokemon.url)
-            .then(response => response.json())
-            .then(json => setTypes(json.types.map(i => i.type)))
-    }, []);
-
-    // test
-    let catImg = "https://hips.hearstapps.com/hmg-prod/images/cute-cat-photos-1593441022.jpg"
+const Card = ({id, name, types, img, show}) => {
+    let typesJustifyContent = types.length > 1 ? "space-between" : "start"
+    let placeHolder = "https://www.picclickimg.com/gTsAAOSwoUBfoJx6/Pokemon-placeholder-special-listing-to-be-updated.webp"
 
     return (
-        show && <div className='card' style={{width: "100px"}}>
+        show && <div className='card'>
             <div className="card__upper">
-                <p className='card__upper__name'>
-                    {pokemon.name}
-                </p>
-                <p className="card__upper__id">
-                    #{pokemonId}
-                </p>
+                <div className="card__upper__wrapper">
+                    <p className='card__upper__name'>
+                        {name}
+                    </p>
+                    <p className="card__upper__id">
+                        #{id}
+                    </p>
+                </div>
             </div>
-            <div className="card__pic">
-                <img
-                    src={catImg}
-                    alt={pokemon.name}
-                    className="card__pic__"
-                    style={{width: "100px"}}/>
+            <div className="card__pic"><img
+                src={img ? img : placeHolder}
+                alt={name}
+                className="card__pic"/>
             </div>
-            <div className="card__lower">
+            <div className="card__lower" style={{justifyContent: typesJustifyContent}}>
                 {types.map(i => {
                     return (
                         <div className="card__lower__option"
-                             style={{backgroundColor: "#FFF"}}
-                        >
+                             style={{backgroundColor: typeColors[i.name]}}>
                             <p>{i.name}</p>
                         </div>
                     )
