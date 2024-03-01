@@ -1,9 +1,13 @@
 import SearchPage from "../pages/SearchPage";
-import PokemonDetailsPage from "../pages/details/PokemonDetailsPage";
+import PokemonPage from "../pages/pokemonPage/PokemonPage";
 
 export default [
     {
         path: '/',
-        component: SearchPage
+        Component: SearchPage
+    },
+    {
+        path: 'pokemon/:name',
+        Component: PokemonPage
     }
 ]

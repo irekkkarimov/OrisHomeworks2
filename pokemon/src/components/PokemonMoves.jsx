@@ -1,12 +1,9 @@
-const PokemonMoves = () => {
-    let names = [
-        'Seed Bomb',
-        'Sludge Bomb',
-        'Power Whip',
-        'Frustration',
-        'Return',
-        'Vine Whip'
-    ]
+import {useEffect, useState} from "react";
+import typeImages from "../utils/typeImages";
+import typeColors from "../utils/typeColors";
+
+const PokemonMoves = ({moves}) => {
+    moves = moves.slice(0, 6)
 
     return (
         <div className="pokemon-page__moves">
@@ -14,7 +11,7 @@ const PokemonMoves = () => {
                 <p>Moves</p>
             </div>
             <div className="pp__moves__lower">
-                {names.map(i => <PokemonMoveCard name={i}/>)}
+                {moves.map(i => <PokemonMoveCard name={i.name} url={i.url}/>)}
             </div>
         </div>
     )
@@ -22,11 +19,22 @@ const PokemonMoves = () => {
 
 export default PokemonMoves
 
-const PokemonMoveCard = ({name}) => {
+const PokemonMoveCard = ({name, url}) => {
+    const [type, setType] = useState('')
+    if (name.includes('-'))
+        name = name.split('-').join(' ')
+
+    useEffect(() => {
+        fetch(url)
+            .then(response => response.json())
+            .then(json => setType(json.type.name))
+    }, []);
 
     return (
-        <div className="pokemon-move-card">
-            <div className="pokemon-move-card__icon"></div>
+        <div
+            style={{backgroundColor: typeColors[type]}}
+            className="pokemon-move-card">
+            <img src={typeImages[type]} alt={type}/>
             <p>{name}</p>
         </div>
     )

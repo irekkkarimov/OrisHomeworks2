@@ -1,0 +1,20 @@
+export default {
+    "grass": "/Types/Grass.png",
+    "fire": "/Types/Fire.png",
+    "water": "/Types/Water.png",
+    "electric": "/Types/Electric.png",
+    "psychic": "/Types/Psychic.png",
+    "fighting": "/Types/Fight.png",
+    "flying": "/Types/Flying.png",
+    "poison": "/Types/Poison.png",
+    "ground": "/Types/Ground.png",
+    "rock": "/Types/Rock.png",
+    "bug": "/Types/Bug.png",
+    "ice": "/Types/Ice.png",
+    "ghost": "/Types/Ghost.png",
+    "dark": "/Types/Dark.png",
+    "steel": "/Types/Steel.png",
+    "dragon": "/Types/Dragon.png",
+    "normal": "/Types/Normal.png",
+    "fairy": "/Types/Fairy.png"
+}

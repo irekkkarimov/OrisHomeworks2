@@ -1,20 +1,19 @@
 import typeColors from "../utils/typeColors";
-import {useEffect, useState} from "react";
 import statColors from "../utils/statColors";
 
 
-const PokemonMain = ({name, types, image}) => {
+const PokemonMain = ({id, name, types, image, stats}) => {
 
     return (
         <div className="pokemon-page__hero">
             <div className="pp__hero__upper">
                 <div className="pp__hero__upper__left">
                     <p className="pp__hero__upper__left__id">
-                        #001
+                        #{id}
                     </p>
                     <div className="pp__hero__upper__left__name__wrapper">
                         <p className="pp__hero__upper__left__name">
-                            Bulbasaur
+                            {name}
                         </p>
                     </div>
                 </div>
@@ -27,22 +26,11 @@ const PokemonMain = ({name, types, image}) => {
             </div>
             <div className="pp__hero__lower">
                 <div className="pp__hero__lower__left">
-                    <div className="pp__hero__lower__left__stat">
-                        <p>HP</p>
-                        <StatBar fore={statColors['hp'].foreground} back={statColors['hp'].background}/>
-                    </div>
-                    <div className="pp__hero__lower__left__stat">
-                        <p>Attack</p>
-                        <StatBar fore={statColors['attack'].foreground} back={statColors['attack'].background}/>
-                    </div>
-                    <div className="pp__hero__lower__left__stat">
-                        <p>Defense</p>
-                        <StatBar fore={statColors['defense'].foreground} back={statColors['defense'].background}/>
-                    </div>
-                    <div className="pp__hero__lower__left__stat">
-                        <p>Speed</p>
-                        <StatBar fore={statColors['speed'].foreground} back={statColors['speed'].background}/>
-                    </div>
+                    {stats.map(i => <StatBar
+                        name={i.stat.name}
+                        level={i.level}
+                        fore={statColors[i.stat.name].foreground}
+                        back={statColors[i.stat.name].background}/>)}
                 </div>
                 <div className="pp__hero__lower__right">
                     <img src={image} alt=""/>
@@ -54,15 +42,25 @@ const PokemonMain = ({name, types, image}) => {
 
 export default PokemonMain
 
-const StatBar = ({fore, back}) => {
+const StatBar = ({name, level, fore, back}) => {
+    if (level > 100)
+        level = 100
 
     return (
-        <div
-            style={{backgroundColor: back}}
-            className="bar">
+        <div className="pp__hero__lower__left__stat">
+            <p>{name}</p>
             <div
-                style={{backgroundColor: fore}}
-                className="bar-filled">
+                style={{backgroundColor: back}}
+                className="bar">
+                <div
+                    style={
+                        {
+                            width: level + '%',
+                            backgroundColor: fore
+                        }
+                    }
+                    className="bar-filled">
+                </div>
             </div>
         </div>
     )

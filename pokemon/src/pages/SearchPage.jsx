@@ -5,7 +5,7 @@ import PokemonNotFound from "../components/PokemonNotFound";
 
 const SearchPage = () => {
     // TODO limit fix
-    const searchUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
+    const searchUrl = "https://pokeapi.co/api/v2/pokemon?limit=10000"
     const [search, setSearch] = useState('')
     const [pokemonFirstArray, setPokemonFirstArray] = useState([])
     const [pokemonDetailedArray, setPokemonDetailedArray] = useState([])
@@ -69,13 +69,13 @@ const SearchPage = () => {
     return (
         <searchpage className="search-page">
             <div className="search-page__header">
-                <img src="/Pokeball.png" className="search-page__header__pokeball"/>
+                <img src="/Pokeball.png" alt="Pokeball" className="search-page__header__pokeball"/>
                 <div className="search-page__header__wrapper">
                     <div className="search-page__header__text">
                         <h2 className="search-page__header__text">Who are you looking for?</h2>
                     </div>
                     <div className="search-page__header__sb">
-                        <img src="/pngegg.png" className="search-page__header__sb__img"/>
+                        <img src="/pngegg.png" alt="Search Icon" className="search-page__header__sb__img"/>
                         <input
                             type="text"
                             value={search}

@@ -1,8 +1,4 @@
-const PokemonAbilities = () => {
-    let abilities = [
-        'Overgrow',
-        'Chlorophill'
-    ]
+const PokemonAbilities = ({abilities}) => {
 
     return (
         <div className="pokemon-page__abilities">
@@ -10,7 +6,7 @@ const PokemonAbilities = () => {
                 <p>Abilities</p>
             </div>
             <div className="pp__abilities__lower">
-                {abilities.map(i => <AbilityCard name={i}/>)}
+                {abilities.map(i => <AbilityCard name={i.name}/>)}
             </div>
         </div>
     )
@@ -22,7 +18,9 @@ const AbilityCard = ({name}) => {
 
     return (
         <div className="ability-card">
-            <div className="ability-card__icon"></div>
+            <div className="ability-card__icon">
+                <p>{name.slice(0, 1)[0]}</p>
+            </div>
             <p>{name}</p>
         </div>
     )

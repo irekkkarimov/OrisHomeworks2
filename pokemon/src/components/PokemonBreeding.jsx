@@ -1,5 +1,13 @@
-const PokemonBreeding = () => {
+const PokemonBreeding = ({height, weight}) => {
+    let heightInFeet = (height / 10) * 3.281
+    let remainder = heightInFeet - parseInt(heightInFeet)
+    let remainderInInches = Math.round(remainder * 12)
+    let inchesStringified = remainderInInches > 9 ? remainderInInches : `0${remainderInInches}`
 
+    let weightInPounds = ((weight / 10) * 2.2).toFixed(1)
+
+    if (weightInPounds % 1 === 0)
+        weightInPounds = parseInt(weightInPounds)
 
     return (
         <div className="pokemon-page__breeding">
@@ -9,11 +17,12 @@ const PokemonBreeding = () => {
             <div className="pp__breeding__lower">
                 <div className="pp__breeding__lower__stat">
                     <p>Height</p>
-                    <StatCard/>
+                    <StatCard first={parseInt(heightInFeet) + `'` + inchesStringified + `"`}
+                              second={height / 10 + ' m'}/>
                 </div>
                 <div className="pp__breeding__lower__stat">
                     <p>Weight</p>
-                    <StatCard/>
+                    <StatCard first={weightInPounds + ' lbs'} second={weight / 10 + ' kg'}/>
                 </div>
             </div>
         </div>
@@ -23,12 +32,13 @@ const PokemonBreeding = () => {
 export default PokemonBreeding
 
 
-const StatCard = () => {
+const StatCard = ({first, second}) => {
+
 
     return (
         <div className="stat-card">
-            <p className="stat-card__first">2'04</p>
-            <p className="stat-card__second">0.7m</p>
+            <p className="stat-card__first">{first}</p>
+            <p className="stat-card__second">{second}</p>
         </div>
     )
 }
