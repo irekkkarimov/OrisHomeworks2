@@ -1,7 +1,34 @@
+import PokemonMain from "../../components/PokemonMain";
+import "./PokemonPage.css"
+import {useEffect, useState} from "react";
+import PokemonBreeding from "../../components/PokemonBreeding";
+import PokemonMoves from "../../components/PokemonMoves";
+import PokemonAbilities from "../../components/PokemonAbilities";
 
 
 const PokemonPage = () => {
-    let types = ["Grass", "Poison"]
+    const [pokemon, setPokemon] = useState({
+        name: '',
+        sprites:
+            {
+                other:
+                    {
+                        home:
+                            {front_default: ''}
+                    }
+            }
+    })
+    const [types, setTypes] = useState([])
+
+    useEffect(() => {
+        fetch('https://pokeapi.co/api/v2/pokemon/1/')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+                setPokemon(json)
+                setTypes(json.types.map(i => i.type))
+            })
+    }, []);
 
     return (
         <div className="pokemon-page">
@@ -9,33 +36,13 @@ const PokemonPage = () => {
 
             </div>
             <div className="pokemon-page__body">
-                <div className="pokemon-page__hero">
-                    <div className="pp__hero__upper">
-                        <div className="pp__hero__upper__left">
-                            <p className="pp__hero__upper__left__id">
-                                #001
-                            </p>
-                            <div className="pp__hero__upper__left__name__wrapper">
-                                <p className="pp__hero__upper__left__name">
-                                    Bulbasaur
-                                </p>
-                            </div>
-                        </div>
-                        <div className="pp__hero__upper__right">
-                            {types.map(i =>
-                                <div className="pp__hero__upper__right__option">{i}</div>)}
-                        </div>
-                    </div>
-                </div>
-                <div className="pokemon-page__stats">
-
-                </div>
-                <div className="pokemon-page__moves">
-
-                </div>
-                <div className="pokemon-page__abilities">
-
-                </div>
+                <PokemonMain
+                    name={pokemon.name}
+                    types={types}
+                    image={pokemon.sprites.other.home.front_default}/>
+                <PokemonBreeding/>
+                <PokemonMoves/>
+                <PokemonAbilities/>
             </div>
         </div>
     )

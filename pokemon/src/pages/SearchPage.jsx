@@ -4,7 +4,8 @@ import PokemonNotFound from "../components/PokemonNotFound";
 
 
 const SearchPage = () => {
-    const searchUrl = "https://pokeapi.co/api/v2/pokemon?limit=10000"
+    // TODO limit fix
+    const searchUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
     const [search, setSearch] = useState('')
     const [pokemonFirstArray, setPokemonFirstArray] = useState([])
     const [pokemonDetailedArray, setPokemonDetailedArray] = useState([])
