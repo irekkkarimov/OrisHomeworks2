@@ -130,6 +130,7 @@ p {
     align-self: start;
 }
 
+
 .card__lower {
     width: inherit;
     margin-top: 5px;
@@ -172,4 +173,34 @@ p {
 
 .pokemonNotFound img {
     width: 200px;
+}
+
+.pokemon-page__body > div {
+    border-radius: 5px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .2);
+}
+
+.pokemon-page__hero {
+    margin: 12px 7px;
+}
+
+.pp__hero__upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pp__hero__upper__left {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.pp__hero__upper__right {
+    display: flex;
+}
+
+.pp__hero__upper__right__option {
+    padding: 2px 8px;
+    border-radius: 3px
 }

@@ -32,9 +32,6 @@ const SearchPage = () => {
             fetch(nextPokemonUrl)
                 .then(i => i.json())
                 .then(json => {
-                    console.log(nextPokemonUrl)
-                    console.log(pokemonDetailedArray.length)
-                    console.log(pokemonFirstArray.length)
                     let currentIndex = pokemonDetailedArray.length
                     let pokemonUrlSplit = nextPokemonUrl.split('/')
                     let pokemonId = pokemonUrlSplit[pokemonUrlSplit.length - 2]
