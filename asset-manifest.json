@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/OrisHomeworks2/static/css/main.ecd1f577.css",
-    "main.js": "/OrisHomeworks2/static/js/main.bc544553.js",
+    "main.js": "/OrisHomeworks2/static/js/main.897b1349.js",
     "static/media/Pokeball.png": "/OrisHomeworks2/static/media/Pokeball.a01c63b30b8321c9b3d1.png",
     "static/media/arrow-89-32.ico": "/OrisHomeworks2/static/media/arrow-89-32.a6af65ff2c0ac9989eef.ico",
     "index.html": "/OrisHomeworks2/index.html",
     "main.ecd1f577.css.map": "/OrisHomeworks2/static/css/main.ecd1f577.css.map",
-    "main.bc544553.js.map": "/OrisHomeworks2/static/js/main.bc544553.js.map"
+    "main.897b1349.js.map": "/OrisHomeworks2/static/js/main.897b1349.js.map"
   },
   "entrypoints": [
     "static/css/main.ecd1f577.css",
-    "static/js/main.bc544553.js"
+    "static/js/main.897b1349.js"
   ]
 }
