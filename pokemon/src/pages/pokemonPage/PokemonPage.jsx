@@ -5,6 +5,8 @@ import PokemonBreeding from "../../components/PokemonBreeding";
 import PokemonMoves from "../../components/PokemonMoves";
 import PokemonAbilities from "../../components/PokemonAbilities";
 import {useNavigate, useParams} from "react-router-dom";
+import pokeball from "../../assets/Pokeball.png";
+import arrow from "../../assets/arrow-89-32.ico";
 
 
 const PokemonPage = () => {
@@ -44,11 +46,11 @@ const PokemonPage = () => {
                 <img
                     onClick={() => navigate('/')}
                     className="pp__header__arrow"
-                    src="/arrow-89-32.ico"
+                    src={arrow}
                     alt="Go Back"/>
                 <img
                     className="pp__header__pokeball"
-                    src="/Pokeball.png"
+                    src={pokeball}
                     alt="Pokeball"/>
             </div>
             <div className="pokemon-page__body">

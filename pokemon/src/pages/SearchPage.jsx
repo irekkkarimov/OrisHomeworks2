@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import Card from "../components/Card";
 import PokemonNotFound from "../components/PokemonNotFound";
+import pokeball from "../assets/Pokeball.png";
+import searchIcon from "../assets/pngegg.png";
 
 
 const SearchPage = () => {
@@ -69,13 +71,13 @@ const SearchPage = () => {
     return (
         <searchpage className="search-page">
             <div className="search-page__header">
-                <img src="/Pokeball.png" alt="Pokeball" className="search-page__header__pokeball"/>
+                <img src={pokeball} alt="Pokeball" className="search-page__header__pokeball"/>
                 <div className="search-page__header__wrapper">
                     <div className="search-page__header__text">
                         <h2 className="search-page__header__text">Who are you looking for?</h2>
                     </div>
                     <div className="search-page__header__sb">
-                        <img src="/pngegg.png" alt="Search Icon" className="search-page__header__sb__img"/>
+                        <img src={searchIcon} alt="Search Icon" className="search-page__header__sb__img"/>
                         <input
                             type="text"
                             value={search}

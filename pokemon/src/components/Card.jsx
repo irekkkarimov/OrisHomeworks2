@@ -1,4 +1,3 @@
-
 import typeColors from "../utils/typeColors";
 import {useNavigate} from "react-router-dom";
 
