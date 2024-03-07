@@ -11,16 +11,32 @@ const SearchPage = () => {
     const [filter, setFilter] = useState('')
     const [pokemonFirstArray, setPokemonFirstArray] = useState([])
     const [pokemonDetailedArray, setPokemonDetailedArray] = useState([])
+    const [searchArray, setSearchArray] = useState([])
     const [nextPokemonUrl, setNextPokemonUrl] = useState('')
     const [isSearching, setIsSearching] = useState(false)
     const [isFound, setIsFound] = useState(false)
     const [currentLimit, setCurrentLimit] = useState(50)
-    const [currentOffset, setCurrentOffset] = useState(0)
-    const [fetching, setFetching] = useState(true)
+    const [pokemonsLoaded, setPokemonsLoaded] = useState(0)
+    const [fetching, setFetching] = useState(false)
 
     let handleSearch = () => {
         setIsSearching(true)
-        setIsFound(pokemonDetailedArray.map(i => i.name.toLowerCase()).includes(filter.toLowerCase()));
+        let newSearchArray = []
+
+        pokemonFirstArray.forEach(pokemon => {
+            if (pokemon.name.includes(filter)) {
+                console.log(true)
+                newSearchArray.push(pokemon.url)
+            }
+        })
+
+        load(newSearchArray)
+            .then(response => {
+                console.log(response)
+                setSearchArray(response)
+                if (response.length > 0)
+                    setIsFound(true)
+            })
     }
 
     useEffect(() => {
@@ -31,38 +47,36 @@ const SearchPage = () => {
     }, []);
 
     useEffect(() => {
-        if (fetching) {
-            fetch(searchUrl + `limit=${currentLimit}` + `&offset=${currentOffset}`)
-                .then(response => response.json())
-                .then(json => {
-                    setPokemonFirstArray([...pokemonFirstArray, ...json.results])
-                    setNextPokemonUrl(json.results[0].url)
-                    setCurrentOffset(prev => prev + currentLimit)
-                    setCurrentLimit(20)
-                    return json.next
-                })
-                .finally(() => setFetching(false))
-        }
-    }, [fetching]);
+        fetch(searchUrl + `limit=10000`)
+            .then(response => response.json())
+            .then(json => {
+                setPokemonFirstArray(json.results)
+                setFetching(true)
+            })
+    }, []);
 
     useEffect(() => {
-            let newPokemons = pokemonFirstArray.slice(pokemonDetailedArray.length)
-            let newPokemonsLoaded = load(newPokemons.map(i => i.url))
-                .then(response => {
-                    setPokemonDetailedArray(prev => [...prev, ...response])
-                    document.addEventListener('scroll', scrollHandler)
-                })
-
-        }, [pokemonFirstArray.length]
-    )
-    ;
+            if (fetching) {
+                let newPokemons = pokemonFirstArray.slice(pokemonsLoaded, currentLimit)
+                let newPokemonsLoaded = load(newPokemons.map(i => i.url))
+                    .then(response => {
+                        setPokemonDetailedArray(prev => [...prev, ...response])
+                        setCurrentLimit(prev => prev + 20)
+                        setPokemonsLoaded(prev => prev + response.length)
+                    })
+                    .finally(() => {
+                        setFetching(false)
+                        document.addEventListener('scroll', scrollHandler)
+                    })
+            }
+        }, [fetching, searchArray]
+    );
 
     const scrollHandler = (e) => {
         console.log(1)
-        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) && pokemonFirstArray.length < 1302) {
-            setFetching(true)
-            console.log(2)
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) && pokemonDetailedArray.length < pokemonFirstArray.length) {
             document.removeEventListener('scroll', scrollHandler)
+            setFetching(true)
         }
     }
 
@@ -83,6 +97,7 @@ const SearchPage = () => {
                             onChange={(e) => {
                                 setFilter(e.target.value)
                                 setIsSearching(false)
+                                setSearchArray([])
                             }}/>
                         <button
                             className="search-page__header__sb__submit"
@@ -92,14 +107,23 @@ const SearchPage = () => {
                     </div>
                 </div>
             </div>
-            {isSearching && !isFound ? <PokemonNotFound/> :
+            {isSearching ?
+                !isFound
+                    ? <PokemonNotFound/>
+                    : <div className="search-page__body">
+                        {searchArray.map(i => <Card
+                            id={i.id}
+                            name={i.name}
+                            types={i.types}
+                            img={i.img}/>)}
+                    </div>
+                :
                 <div className="search-page__body">
                     {pokemonDetailedArray.map(i => <Card
                         id={i.id}
                         name={i.name}
                         types={i.types}
-                        img={i.img}
-                        show={isSearching ? i.name.toLowerCase() === filter.toLowerCase() : true}/>)}
+                        img={i.img}/>)}
                 </div>}
         </searchpage>
     )
