@@ -7,7 +7,7 @@ export default [
         Component: SearchPage
     },
     {
-        path: 'pokemon/:name',
+        path: '/pokemon/:name',
         Component: PokemonPage
     }
 ]
