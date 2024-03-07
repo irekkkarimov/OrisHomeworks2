@@ -3,70 +3,68 @@ import Card from "../components/Card";
 import PokemonNotFound from "../components/PokemonNotFound";
 import pokeball from "../assets/Pokeball.png";
 import searchIcon from "../assets/pngegg.png";
+import load from "../utils/loadPokemonsDetailed";
 
 
 const SearchPage = () => {
-    // TODO limit fix
-    const searchUrl = "https://pokeapi.co/api/v2/pokemon?limit=10000"
-    const [search, setSearch] = useState('')
+    const searchUrl = "https://pokeapi.co/api/v2/pokemon?"
+    const [filter, setFilter] = useState('')
     const [pokemonFirstArray, setPokemonFirstArray] = useState([])
     const [pokemonDetailedArray, setPokemonDetailedArray] = useState([])
     const [nextPokemonUrl, setNextPokemonUrl] = useState('')
     const [isSearching, setIsSearching] = useState(false)
     const [isFound, setIsFound] = useState(false)
+    const [currentLimit, setCurrentLimit] = useState(50)
+    const [currentOffset, setCurrentOffset] = useState(0)
+    const [fetching, setFetching] = useState(true)
 
     let handleSearch = () => {
         setIsSearching(true)
-        setIsFound(pokemonDetailedArray.map(i => i.name.toLowerCase()).includes(search.toLowerCase()));
+        setIsFound(pokemonDetailedArray.map(i => i.name.toLowerCase()).includes(filter.toLowerCase()));
     }
 
     useEffect(() => {
-        fetch(searchUrl)
-            .then(response => response.json())
-            .then(json => {
-                setPokemonFirstArray(json.results)
-                setNextPokemonUrl(json.results[0].url)
-                return json.next
-            })
+        document.addEventListener('scroll', scrollHandler)
+        return function () {
+            document.removeEventListener('scroll', scrollHandler)
+        }
     }, []);
 
     useEffect(() => {
-        if (nextPokemonUrl && nextPokemonUrl !== '')
-            fetch(nextPokemonUrl)
-                .then(i => i.json())
+        if (fetching) {
+            fetch(searchUrl + `limit=${currentLimit}` + `&offset=${currentOffset}`)
+                .then(response => response.json())
                 .then(json => {
-                    let currentIndex = pokemonDetailedArray.length
-                    let pokemonUrlSplit = nextPokemonUrl.split('/')
-                    let pokemonId = pokemonUrlSplit[pokemonUrlSplit.length - 2]
-                    let pokemonIdParsed = pokemonId.toString()
+                    setPokemonFirstArray([...pokemonFirstArray, ...json.results])
+                    setNextPokemonUrl(json.results[0].url)
+                    setCurrentOffset(prev => prev + currentLimit)
+                    setCurrentLimit(20)
+                    return json.next
+                })
+                .finally(() => setFetching(false))
+        }
+    }, [fetching]);
 
-                    if (pokemonId < 100)
-                        pokemonIdParsed = `0${pokemonId}`
-                    if (pokemonId < 10)
-                        pokemonIdParsed = `00${pokemonId}`
-
-                    let newPokemonDetailed = {
-                        id: pokemonIdParsed,
-                        name: pokemonFirstArray[currentIndex].name,
-                        types: json.types.map(i => i.type),
-                    }
-
-                    if (json.sprites.other.home.front_default)
-                        newPokemonDetailed.img = json.sprites.other.home.front_default
-                    else
-                        newPokemonDetailed.img = json.sprites.other.home.front_default
-
-                    let newPokemonDetailedArray = pokemonDetailedArray
-                    newPokemonDetailedArray.push(newPokemonDetailed)
-                    setPokemonDetailedArray(newPokemonDetailedArray)
-
-                    let nextPokemon = pokemonFirstArray[currentIndex + 1]
-                    if (nextPokemon)
-                        setNextPokemonUrl(pokemonFirstArray[currentIndex + 1].url)
-                    else setNextPokemonUrl('')
+    useEffect(() => {
+            let newPokemons = pokemonFirstArray.slice(pokemonDetailedArray.length)
+            let newPokemonsLoaded = load(newPokemons.map(i => i.url))
+                .then(response => {
+                    setPokemonDetailedArray(prev => [...prev, ...response])
+                    document.addEventListener('scroll', scrollHandler)
                 })
 
-    }, [nextPokemonUrl]);
+        }, [pokemonFirstArray.length]
+    )
+    ;
+
+    const scrollHandler = (e) => {
+        console.log(1)
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) && pokemonFirstArray.length < 1302) {
+            setFetching(true)
+            console.log(2)
+            document.removeEventListener('scroll', scrollHandler)
+        }
+    }
 
     return (
         <searchpage className="search-page">
@@ -80,10 +78,10 @@ const SearchPage = () => {
                         <img src={searchIcon} alt="Search Icon" className="search-page__header__sb__img"/>
                         <input
                             type="text"
-                            value={search}
+                            value={filter}
                             className="search-page__header__sb__input"
                             onChange={(e) => {
-                                setSearch(e.target.value)
+                                setFilter(e.target.value)
                                 setIsSearching(false)
                             }}/>
                         <button
@@ -101,7 +99,7 @@ const SearchPage = () => {
                         name={i.name}
                         types={i.types}
                         img={i.img}
-                        show={isSearching ? i.name.toLowerCase() === search.toLowerCase() : true}/>)}
+                        show={isSearching ? i.name.toLowerCase() === filter.toLowerCase() : true}/>)}
                 </div>}
         </searchpage>
     )
