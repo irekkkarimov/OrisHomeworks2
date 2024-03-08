@@ -9,23 +9,24 @@ import loadPokemonsByFilter from "../utils/loadPokemonsByFilter";
 const SearchPage = () => {
     const [filter, setFilter] = useState('')
     const [pokemonList, setPokemonList] = useState([])
+    const [pokemonCount, setPokemonCount] = useState(0)
     const [isSearching, setIsSearching] = useState(false)
     const [isFound, setIsFound] = useState(false)
     const [currentLimit, setCurrentLimit] = useState(70)
     const [pokemonsLoaded, setPokemonsLoaded] = useState(0)
     const [fetching, setFetching] = useState(true)
+    const [isFirstLoaded, setIsFirstLoaded] = useState(false)
 
     let handleSearch = () => {
-        document.removeEventListener('scroll', scrollHandler)
         setIsSearching(true)
     }
 
     useEffect(() => {
-        document.addEventListener('scroll', scrollHandler)
-        return function () {
-            document.removeEventListener('scroll', scrollHandler)
+            document.addEventListener('scroll', scrollHandler)
+            return function () {
+                document.removeEventListener('scroll', scrollHandler)
         }
-    }, []);
+    }, [pokemonCount]);
 
     useEffect(() => {
         if (pokemonList.length > 0) {
@@ -35,41 +36,42 @@ const SearchPage = () => {
     }, [isSearching]);
 
     useEffect(() => {
-        console.log(fetching)
         if (fetching) {
             if (isSearching) {
-                loadPokemonsByFilter(0, 0, filter)
-                    .then(data => {
-                        if (data.length > 0)
+                loadPokemonsByFilter(currentLimit, pokemonsLoaded, filter)
+                    .then(json => {
+                        if (json.results.length > 0)
                             setIsFound(true)
-                        setPokemonList(prev => [...prev, ...data])
-                        setCurrentLimit(70)
-                        setPokemonsLoaded(0)
+                        setPokemonList(prev => [...prev, ...json.results])
+                        setCurrentLimit(20)
+                        setPokemonsLoaded(prev => prev + json.results.length)
+                        setPokemonCount(json.count)
                         setFetching(false)
+                        setIsFirstLoaded(true)
+                        document.addEventListener('scroll', scrollHandler)
                     })
             } else {
                 loadPokemonsByFilter(currentLimit, pokemonsLoaded)
-                    .then(data => {
-                        setPokemonList(prev => [...prev, ...data])
+                    .then(json => {
+                        setPokemonList(prev => [...prev, ...json.results])
                         setCurrentLimit(20)
-                        console.log(pokemonsLoaded + data.length)
-                        setPokemonsLoaded(prev => prev + data.length)
+                        setPokemonsLoaded(prev => prev + json.results.length)
+                        setPokemonCount(json.count)
                         setFetching(false)
+                        setIsFirstLoaded(true)
                         document.addEventListener('scroll', scrollHandler)
-                        console.log('added')
                     })
             }
         }
 
     }, [fetching]);
 
-    const scrollHandler = useCallback((e) => {
-        console.log(1)
-        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200) && !isSearching && pokemonList.length < 1302) {
+    const scrollHandler = (e) => {
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200) && pokemonList.length < pokemonCount) {
             document.removeEventListener('scroll', scrollHandler)
             setFetching(true)
         }
-    }, [])
+    }
 
     return (
         <searchpage className="search-page">
@@ -89,6 +91,8 @@ const SearchPage = () => {
                                 setFilter(e.target.value)
                                 setIsSearching(false)
                                 setIsFound(false)
+                                setCurrentLimit(70)
+                                setPokemonsLoaded(0)
                                 document.addEventListener('scroll', scrollHandler)
                             }}/>
                         <button
@@ -105,7 +109,7 @@ const SearchPage = () => {
                     {pokemonList.map(i => <Card
                         id={i.id}
                         name={i.name}
-                        types={i.types}
+                        types={i.types.map(i => i.type)}
                         img={i.sprites.other.home.front_Default}/>)}
                 </div>}
         </searchpage>

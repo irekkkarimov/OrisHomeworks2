@@ -7,13 +7,14 @@ import PokemonAbilities from "../../components/PokemonAbilities";
 import {useNavigate, useParams} from "react-router-dom";
 import pokeball from "../../assets/Pokeball.png";
 import arrow from "../../assets/arrow-89-32.ico";
+import loadPokemonDetailed from "../../utils/loadPokemonDetailed";
 
 
 const PokemonPage = () => {
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState({
         name: '',
-        sprites: {other: {home: {front_default: ''}}}
+        sprites: {other: {home: {front_Default: ''}}}
     })
     const [types, setTypes] = useState([])
     const [stats, setStats] = useState([])
@@ -25,10 +26,8 @@ const PokemonPage = () => {
     ]
 
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
-            .then(response => response.json())
+        loadPokemonDetailed(name)
             .then(json => {
-                console.log(json)
                 setPokemon(json)
                 setTypes(json.types.map(i => i.type))
                 setStats(json.stats.map(i => ({
@@ -59,8 +58,8 @@ const PokemonPage = () => {
                     name={pokemon.name}
                     types={types}
                     stats={stats}
-                    image={pokemon.sprites.other.home.front_default
-                        ? pokemon.sprites.other.home.front_default
+                    image={pokemon.sprites.other.home.front_Default
+                        ? pokemon.sprites.other.home.front_Default
                         : "https://www.picclickimg.com/gTsAAOSwoUBfoJx6/Pokemon-placeholder-special-listing-to-be-updated.webp"}/>
                 <PokemonBreeding height={pokemon.height} weight={pokemon.weight}/>
                 <PokemonMoves moves={moves}/>
