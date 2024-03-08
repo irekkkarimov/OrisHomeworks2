@@ -1,42 +1,23 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import Card from "../components/Card";
 import PokemonNotFound from "../components/PokemonNotFound";
 import pokeball from "../assets/Pokeball.png";
 import searchIcon from "../assets/pngegg.png";
-import load from "../utils/loadPokemonsDetailed";
+import loadPokemonsByFilter from "../utils/loadPokemonsByFilter";
 
 
 const SearchPage = () => {
-    const searchUrl = "https://pokeapi.co/api/v2/pokemon?"
     const [filter, setFilter] = useState('')
-    const [pokemonFirstArray, setPokemonFirstArray] = useState([])
-    const [pokemonDetailedArray, setPokemonDetailedArray] = useState([])
-    const [searchArray, setSearchArray] = useState([])
-    const [nextPokemonUrl, setNextPokemonUrl] = useState('')
+    const [pokemonList, setPokemonList] = useState([])
     const [isSearching, setIsSearching] = useState(false)
     const [isFound, setIsFound] = useState(false)
-    const [currentLimit, setCurrentLimit] = useState(50)
+    const [currentLimit, setCurrentLimit] = useState(70)
     const [pokemonsLoaded, setPokemonsLoaded] = useState(0)
-    const [fetching, setFetching] = useState(false)
+    const [fetching, setFetching] = useState(true)
 
     let handleSearch = () => {
+        document.removeEventListener('scroll', scrollHandler)
         setIsSearching(true)
-        let newSearchArray = []
-
-        pokemonFirstArray.forEach(pokemon => {
-            if (pokemon.name.includes(filter)) {
-                console.log(true)
-                newSearchArray.push(pokemon.url)
-            }
-        })
-
-        load(newSearchArray)
-            .then(response => {
-                console.log(response)
-                setSearchArray(response)
-                if (response.length > 0)
-                    setIsFound(true)
-            })
     }
 
     useEffect(() => {
@@ -47,38 +28,48 @@ const SearchPage = () => {
     }, []);
 
     useEffect(() => {
-        fetch(searchUrl + `limit=10000`)
-            .then(response => response.json())
-            .then(json => {
-                setPokemonFirstArray(json.results)
-                setFetching(true)
-            })
-    }, []);
+        if (pokemonList.length > 0) {
+            setPokemonList([])
+            setFetching(true)
+        }
+    }, [isSearching]);
 
     useEffect(() => {
-            if (fetching) {
-                let newPokemons = pokemonFirstArray.slice(pokemonsLoaded, currentLimit)
-                let newPokemonsLoaded = load(newPokemons.map(i => i.url))
-                    .then(response => {
-                        setPokemonDetailedArray(prev => [...prev, ...response])
-                        setCurrentLimit(prev => prev + 20)
-                        setPokemonsLoaded(prev => prev + response.length)
+        console.log(fetching)
+        if (fetching) {
+            if (isSearching) {
+                loadPokemonsByFilter(0, 0, filter)
+                    .then(data => {
+                        if (data.length > 0)
+                            setIsFound(true)
+                        setPokemonList(prev => [...prev, ...data])
+                        setCurrentLimit(70)
+                        setPokemonsLoaded(0)
+                        setFetching(false)
                     })
-                    .finally(() => {
+            } else {
+                loadPokemonsByFilter(currentLimit, pokemonsLoaded)
+                    .then(data => {
+                        setPokemonList(prev => [...prev, ...data])
+                        setCurrentLimit(20)
+                        console.log(pokemonsLoaded + data.length)
+                        setPokemonsLoaded(prev => prev + data.length)
                         setFetching(false)
                         document.addEventListener('scroll', scrollHandler)
+                        console.log('added')
                     })
             }
-        }, [fetching, searchArray]
-    );
+        }
 
-    const scrollHandler = (e) => {
+    }, [fetching]);
+
+    const scrollHandler = useCallback((e) => {
         console.log(1)
-        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) && pokemonDetailedArray.length < pokemonFirstArray.length) {
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200) && !isSearching && pokemonList.length < 1302) {
             document.removeEventListener('scroll', scrollHandler)
             setFetching(true)
         }
-    }
+    }, [])
 
     return (
         <searchpage className="search-page">
@@ -97,7 +88,8 @@ const SearchPage = () => {
                             onChange={(e) => {
                                 setFilter(e.target.value)
                                 setIsSearching(false)
-                                setSearchArray([])
+                                setIsFound(false)
+                                document.addEventListener('scroll', scrollHandler)
                             }}/>
                         <button
                             className="search-page__header__sb__submit"
@@ -107,23 +99,14 @@ const SearchPage = () => {
                     </div>
                 </div>
             </div>
-            {isSearching ?
-                !isFound
-                    ? <PokemonNotFound/>
-                    : <div className="search-page__body">
-                        {searchArray.map(i => <Card
-                            id={i.id}
-                            name={i.name}
-                            types={i.types}
-                            img={i.img}/>)}
-                    </div>
-                :
-                <div className="search-page__body">
-                    {pokemonDetailedArray.map(i => <Card
+            {isSearching && !isFound
+                ? <PokemonNotFound/>
+                : <div className="search-page__body">
+                    {pokemonList.map(i => <Card
                         id={i.id}
                         name={i.name}
                         types={i.types}
-                        img={i.img}/>)}
+                        img={i.sprites.other.home.front_Default}/>)}
                 </div>}
         </searchpage>
     )
