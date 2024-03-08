@@ -18,15 +18,16 @@ public class PokemonController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll(int limit, int offset)
     {
-        return Ok(await _pokeApiService.GetByFilterAsync("", limit, offset));
+        var pokemonDataDtoList = await _pokeApiService.GetByFilterAsync("", limit, offset);
+        return Ok(new { results = pokemonDataDtoList });
     }
-    
+
     [HttpGet]
     [Route("{filter}")]
-    public async Task<IActionResult> GetByFilter(string filter)
+    public async Task<IActionResult> GetByFilter(int limit, int offset, string filter)
     {
         var pokemonDataDtoList = await _pokeApiService.GetByFilterAsync(filter);
-        return Ok(pokemonDataDtoList);
+        return Ok(new { results = pokemonDataDtoList });
     }
 
     [HttpGet]
@@ -37,7 +38,7 @@ public class PokemonController : ControllerBase
 
         if (pokemonDataDto is null)
             return NotFound();
-            
-        return Ok(pokemonDataDto);
+ 
+        return Ok(new { results = pokemonDataDto });
     }
 }
