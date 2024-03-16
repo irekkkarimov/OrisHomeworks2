@@ -13,12 +13,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton(
-    new RedisConnectionProvider(builder.Configuration.GetConnectionString("REDIS_CONNECTION_STRING")!));
-builder.Services.AddHostedService<IndexCreationService>();
-builder.Services.AddScoped<IPokemonCacheHandler, PokemonCacheHandler>();
-builder.Services.AddScoped<IPokeApiService, PokeApiService>();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: myAllowSpecificOrigins,
