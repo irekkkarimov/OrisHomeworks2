@@ -8,5 +8,5 @@ public interface IPokemonService
 {
     Task<PokemonLessListGetDto> GetAllAsync(int limit, int offset);
     Task<PokemonLessListGetDto> GetByFilterAsync(string filter, int limit, int offset);
-    Task<PokemonGetDto?> GetByIdOrNameAsync(string idOrName);
+    Task<PokemonGetDto> GetByIdOrNameAsync(string idOrName);
 }

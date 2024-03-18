@@ -1,7 +1,6 @@
-using PokemonAPI.Services;
-using PokemonAPI.Services.PokeApiService;
-using PokemonAPI.Services.PokemonCacheHandler;
-using Redis.OM;
+using DataLayer;
+using PokemonAPI.Profiles;
+using PokemonAPI.Services.PokemonService;
 
 const string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDataLayer(builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+builder.Services.AddScoped<IPokemonService, PokemonService>();
 
 builder.Services.AddCors(options =>
 {

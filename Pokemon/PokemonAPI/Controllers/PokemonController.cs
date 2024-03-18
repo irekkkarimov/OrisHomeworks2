@@ -33,10 +33,6 @@ public class PokemonController : ControllerBase
     public async Task<IActionResult> GetByIdOrName(string idOrName)
     {
         var pokemonDataDto = await _pokemonService.GetByIdOrNameAsync(idOrName);
-
-        if (pokemonDataDto is null)
-            return NotFound();
- 
         return Ok(pokemonDataDto);
     }
 }
