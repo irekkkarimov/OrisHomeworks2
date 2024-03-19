@@ -15,7 +15,6 @@ const SearchPage = () => {
     const [currentLimit, setCurrentLimit] = useState(70)
     const [pokemonsLoaded, setPokemonsLoaded] = useState(0)
     const [fetching, setFetching] = useState(true)
-    const [isFirstLoaded, setIsFirstLoaded] = useState(false)
 
     let handleSearch = () => {
         setIsSearching(true)
@@ -32,6 +31,7 @@ const SearchPage = () => {
         if (pokemonList.length > 0) {
             setPokemonList([])
             setFetching(true)
+            setCurrentLimit(70)
         }
     }, [isSearching]);
 
@@ -47,7 +47,6 @@ const SearchPage = () => {
                         setPokemonsLoaded(prev => prev + json.results.length)
                         setPokemonCount(json.count)
                         setFetching(false)
-                        setIsFirstLoaded(true)
                         document.addEventListener('scroll', scrollHandler)
                     })
             } else {
@@ -58,7 +57,6 @@ const SearchPage = () => {
                         setPokemonsLoaded(prev => prev + json.results.length)
                         setPokemonCount(json.count)
                         setFetching(false)
-                        setIsFirstLoaded(true)
                         document.addEventListener('scroll', scrollHandler)
                     })
             }
@@ -109,8 +107,8 @@ const SearchPage = () => {
                     {pokemonList.map(i => <Card
                         id={i.id}
                         name={i.name}
-                        types={i.types.map(i => i.type)}
-                        img={i.sprites.other.home.front_Default}/>)}
+                        types={i.types}
+                        img={i.image}/>)}
                 </div>}
         </searchpage>
     )
