@@ -1,0 +1,45 @@
+using AutoMapper;
+using TeamHost.Application.DTOs.Category;
+using TeamHost.Application.DTOs.Company;
+using TeamHost.Application.DTOs.Country;
+using TeamHost.Application.DTOs.Game;
+using TeamHost.Application.DTOs.Platform;
+using TeamHost.Application.DTOs.StaticFile;
+using TeamHost.Application.Features.Games.Queries;
+using TeamHost.Domain.Entities;
+using TeamHost.Domain.Entities.GameEntities;
+
+namespace TeamHost.Application.Profiles;
+
+public class AutoMapperProfile : Profile
+{
+    public AutoMapperProfile()
+    {
+        CreateMap<Game, GetGameDto>()
+            .ForMember(i => i.Name,
+                i => i.MapFrom(e => e.Name))
+            .ForMember(i => i.Description,
+                i => i.MapFrom(e => e.Description))
+            .ForMember(i => i.ShortDescription,
+                i => i.MapFrom(e => e.ShortDescription))
+            .ForMember(i => i.Price,
+                i => i.MapFrom(e => e.Price))
+            .ForMember(i => i.Rating,
+                i => i.MapFrom(e => e.Rating))
+            .ForMember(i => i.ReleaseDate,
+                i => i.MapFrom(e => e.ReleaseDate))
+            .ForMember(i => i.MainImage,
+                i => i.MapFrom(e =>
+                    e.Images.FirstOrDefault(y => y.IsMainImage)));
+
+        CreateMap<Platform, GetPlatformDto>();
+
+        CreateMap<Category, GetGameCategoryDto>();
+
+        CreateMap<Country, GetGameCountryDto>();
+
+        CreateMap<Company, GetCompanyDto>();
+
+        CreateMap<StaticFile, GetStaticFileDto>();
+    }
+}

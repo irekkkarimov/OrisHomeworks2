@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <RootNamespace>TeamHostApp.WEB</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+
+
+        </Content>
+
+        <PackageReference Include="MediatR" Version="12.2.0"/>
+
+
+
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.16">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\TeamHost.Application\TeamHost.Application.csproj" />
+      <ProjectReference Include="..\TeamHost.Infrastructure\TeamHost.Infrastructure.csproj" />
+      <ProjectReference Include="..\TeamHost.Persistence\TeamHost.Persistence.csproj" />
+    </ItemGroup>
+
+</Project>

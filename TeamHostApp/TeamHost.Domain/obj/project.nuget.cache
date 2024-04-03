@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "SHC7Jg/WxNQOOJAlNGI5lY1mhjRpK4uzQsoluzx20SE8VAlxWlP4qQwUrWy5LXJT0Qw++8vp47aSjhI3Gw0kug==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Booba\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\Booba\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\Booba\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

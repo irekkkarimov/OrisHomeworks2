@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TeamHostApp.WEB.props" />
+</Project>
