@@ -1,5 +1,3 @@
-@using static TeamHostApp.WEB.Components.GameStoreCard
-@using TeamHost.Domain.Entities.GameEntities
 @model List<TeamHost.Application.DTOs.Game.GetGameDto>
 
 @{
@@ -7,23 +5,7 @@
     Model.Add(Model[0]);
 }
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>TeamHost - Join now and play mighty games!</title>
-    <meta content="Templines" name="author">
-    <meta content="TeamHost" name="description">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="format-detection" content="telephone=no">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <link rel="shortcut icon" href="~/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="~/css/libs.min.css">
-    <link rel="stylesheet" href="~/css/main.css">
-</head>
-
+<main class="page-main">
 
 <!-- Loader-->
 <div id="page-preloader">
@@ -31,7 +13,7 @@
 </div>
 <!-- Loader end-->
 
-<div class="widjet--filters">
+<div class="widjet --filters">
     <div class="widjet__head">
         <h3 class="uk-text-lead">Games Store</h3>
     </div>
@@ -233,4 +215,5 @@
 
 <script src="~/js/libs.js"></script>
 <script src="~/js/main.js"></script>
-</html>
+
+</main>

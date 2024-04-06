@@ -33,4 +33,9 @@
       <ProjectReference Include="..\TeamHost.Persistence\TeamHost.Persistence.csproj" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\GameStoreCard.razor" />
+    </ItemGroup>
+
 </Project>

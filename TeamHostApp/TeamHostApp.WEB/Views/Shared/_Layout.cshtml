@@ -22,6 +22,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
 </head>
 <body>
+
+
 <div class="page-wrapper">
     <header class="page-header">
         <div class="page-header__inner">
@@ -73,7 +75,7 @@
             <div class="sidebar-box">
                 <ul class="uk-nav">
                     <li class="uk-active">
-                        <a href="03_home.html">
+                        <a asp-controller="Home">
                             <i class="ico_home"></i><span>Home</span>
                         </a>
                     </li>
@@ -138,9 +140,7 @@
                 </ul>
             </div>
         </aside>
-        <main class="page-main">
-            @RenderBody()
-        </main>
+        @RenderBody()
     </div>
 </div>
 <div class="page-modals">

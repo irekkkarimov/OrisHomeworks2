@@ -16,10 +16,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Booba/Desktop/OrisHomeworks2/TeamHostApp/TeamHostApp.WEB/Components/GameStoreCard.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHYW1lU3RvcmVDYXJkLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Booba/Desktop/OrisHomeworks2/TeamHostApp/TeamHostApp.WEB/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
