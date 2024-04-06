@@ -125,11 +125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
       "projectName": "TeamHost.Domain",
-      "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+      "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
       "packagesPath": "C:\\Users\\Booba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Booba\\AppData\\Roaming\\NuGet\\NuGet.Config",

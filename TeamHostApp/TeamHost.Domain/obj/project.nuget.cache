@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SHC7Jg/WxNQOOJAlNGI5lY1mhjRpK4uzQsoluzx20SE8VAlxWlP4qQwUrWy5LXJT0Qw++8vp47aSjhI3Gw0kug==",
+  "dgSpecHash": "E9c9nMd7g58O/v86DhF0PSeWbpnYROQtJsXwy41vrqZvMYC+2Cni6RqQ0Emc3Xc+PCT8jUbTabCmohkpB0lvHQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Booba\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\Booba\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

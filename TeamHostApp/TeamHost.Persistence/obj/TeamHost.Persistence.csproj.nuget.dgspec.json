@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj": {}
+    "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj": {
+    "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
         "projectName": "TeamHost.Application",
-        "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
+        "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
         "packagesPath": "C:\\Users\\Booba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\obj\\",
+        "outputPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Booba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -30,8 +30,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj": {
-                "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj"
+              "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj": {
+                "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj": {
+    "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
         "projectName": "TeamHost.Domain",
-        "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
+        "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj",
         "packagesPath": "C:\\Users\\Booba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Domain\\obj\\",
+        "outputPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Booba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -150,14 +150,14 @@
         }
       }
     },
-    "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj": {
+    "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj",
         "projectName": "TeamHost.Persistence",
-        "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj",
+        "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Persistence\\TeamHost.Persistence.csproj",
         "packagesPath": "C:\\Users\\Booba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Persistence\\obj\\",
+        "outputPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Booba\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -176,8 +176,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj": {
-                "projectPath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj"
+              "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj": {
+                "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj"
               }
             }
           }
@@ -195,6 +195,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.16, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

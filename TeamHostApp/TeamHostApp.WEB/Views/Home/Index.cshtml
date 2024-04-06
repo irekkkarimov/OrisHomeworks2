@@ -1,4 +1,5 @@
 ﻿@{
+    Layout = Layout;
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,116 +9,6 @@
     <span class="spinner border-t_second_b border-t_prim_a"></span>
 </div>
 <!-- Loader end-->
-
-<div class="page-wrapper">
-<header class="page-header">
-    <div class="page-header__inner">
-        <div class="page-header__sidebar">
-            <div class="page-header__menu-btn">
-                <button class="menu-btn ico_menu is-active"></button>
-            </div>
-            <div class="page-header__logo">
-                <img src="~/img/logo.png" alt="logo"><span class="page-header__logo_text">TEAMHOST</span>
-            </div>
-        </div>
-        <div class="page-header__content">
-            <div class="page-header__search">
-                <div class="search">
-                    <div class="search__input">
-                        <i class="ico_search"></i><input type="search" name="search" placeholder="Search">
-                    </div>
-                    <div class="search__btn">
-                        <button type="button">
-                            <i class="ico_microphone"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="page-header__action">
-                <a class="action-btn" href="#!">
-                    <i class="ico_message"></i><span></span>
-                </a>
-                <a class="action-btn" href="#!">
-                    <i class="ico_notification"></i><span></span>
-                </a>
-                <a class="profile" href="#!">
-                    <img src="~/img/profile.png" alt="profile">
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="page-content">
-<aside class="sidebar is-show" id="sidebar">
-    <div class="sidebar-box">
-        <ul class="uk-nav">
-            <li class="uk-active">
-                <a href="03_home.html">
-                    <i class="ico_home"></i><span>Home</span>
-                </a>
-            </li>
-            <li class="uk-nav-header">Account</li>
-            <li>
-                <a asp-controller="Profile">
-                    <i class="ico_profile"></i><span>Profile</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Favourites">
-                    <i class="ico_favourites"></i><span>Favourites</span><span class="count">15</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Chats">
-                    <i class="ico_chats"></i><span>Chats</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Friends">
-                    <i class="ico_friends"></i><span>Friends</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Wallet">
-                    <i class="ico_wallet"></i><span>Wallet</span>
-                </a>
-            </li>
-            <li class="uk-nav-header">Main</li>
-            <li>
-                <a asp-controller="Store">
-                    <i class="ico_store"></i><span>Store</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Market">
-                    <i class="ico_market"></i><span>Market</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Streams">
-                    <i class="ico_streams"></i><span>Streams</span>
-                </a>
-            </li>
-            <li>
-                <a asp-controller="Community">
-                    <i class="ico_community"></i><span>Community</span>
-                </a>
-            </li>
-            <li class="uk-nav-header">Support</li>
-            <li>
-                <a href="#modal-report" data-uk-toggle>
-                    <i class="ico_report"></i><span>Report</span>
-                </a>
-            </li>
-            <li>
-                <a href="#modal-help" data-uk-toggle>
-                    <i class="ico_help"></i><span>Help</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</aside>
-<main class="page-main">
 <div class="uk-grid" data-uk-grid>
 <div class="uk-width-2-3@xl">
     <h3 class="uk-text-lead">Recommended & Featured</h3>
@@ -664,9 +555,6 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
-</div>
-</div>
-</main>
 </div>
 </div>
 <div class="page-modals">

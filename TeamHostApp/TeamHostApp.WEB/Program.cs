@@ -1,8 +1,11 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using TeamHost.Application.Extensions;
 using TeamHost.Infrastructure.Extensions;
 using TeamHost.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -11,6 +14,15 @@ builder.Services
     .AddApplicationLayer()
     .AddInfrastructureLayer()
     .AddPersistenceLayer(builder.Configuration);
+
+
+// builder.Services.AddAuthentication(options =>
+// {
+//     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//
+// });
 
 var app = builder.Build();
 
@@ -27,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,4 +1,5 @@
 using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TeamHost.Domain.Common;
 using TeamHost.Domain.Common.Interfaces;
@@ -7,13 +8,12 @@ using TeamHost.Domain.Entities.GameEntities;
 
 namespace TeamHost.Persistence.Contexts;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext
 {
     private readonly IDomainEventDispatcher? _dispatcher;
 
     public ApplicationDbContext()
     {
-        
     }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
@@ -38,15 +38,15 @@ public class ApplicationDbContext : DbContext
     {
         var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-        if (_dispatcher is null)
-            return result;
-
-        var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()
-            .Select(i => i.Entity)
-            .Where(i => i.DomainEvents.Any())
-            .ToArray();
-
-        await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
+        // if (_dispatcher is null)
+        //     return result;
+        //
+        // var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()
+        //     .Select(i => i.Entity)
+        //     .Where(i => i.DomainEvents.Any())
+        //     .ToArray();
+        //
+        // await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
         return result;
     }
 

@@ -1,5 +1,4 @@
-@page
-@model TeamHostApp.WEB.Views.Auth.Login
+@model TeamHost.Application.DTOs.User.UserLoginDto
 
 @{
     Layout = null;
@@ -22,7 +21,6 @@
     <link rel="stylesheet" href="~/css/main.css">
 </head>
 
-<body class="page-login">
 
 <!-- Loader-->
 <div id="page-preloader">
@@ -30,67 +28,65 @@
 </div>
 <!-- Loader end-->
 
-<div class="page-wrapper">
-    <main class="page-first-screen">
-        <div class="uk-grid uk-grid-small uk-child-width-1-2@s uk-flex-middle uk-width-1-1" data-uk-grid>
-            <div class="logo-big">
-                <img src="~/img/logo-big.png" alt="logo">
-                <span>TeamHost</span>
-                <h1>Join now and play mighty games!</h1>
-            </div>
-            <div>
-                <div class="form-login">
-                    <div class="form-login__social">
-                        <ul class="social">
-                            <li>
-                                <a href="http://www.google.com">
-                                    <img src="~/img/google.svg" alt="google">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://www.facebook.com">
-                                    <img src="~/img/facebook.svg" alt="facebook">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="http://www.twitter.com">
-                                    <img src="~/img/twitter.svg" alt="twitter">
-                                </a>
-                            </li>
-                        </ul>
+<main class="page-first-screen">
+    <div class="uk-grid uk-grid-small uk-child-width-1-2@s uk-flex-middle uk-width-1-1" data-uk-grid>
+        <div class="logo-big">
+            <img src="~/img/logo-big.png" alt="logo">
+            <span>TeamHost</span>
+            <h1>Join now and play mighty games!</h1>
+        </div>
+        <div>
+            <div class="form-login">
+                <div class="form-login__social">
+                    <ul class="social">
+                        <li>
+                            <a href="http://www.google.com">
+                                <img src="~/img/google.svg" alt="google">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.facebook.com">
+                                <img src="~/img/facebook.svg" alt="facebook">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.twitter.com">
+                                <img src="~/img/twitter.svg" alt="twitter">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-login__box">
+                    <div class="uk-heading-line uk-text-center">
+                        <span>or with Email</span>
                     </div>
-                    <div class="form-login__box">
-                        <div class="uk-heading-line uk-text-center">
-                            <span>or with Email</span>
+                    <form asp-action="Login">
+                        <div class="uk-margin">
+                            <input asp-for="Email" class="uk-input" type="text" placeholder="Email">
                         </div>
-                        <form action="#!">
-                            <div class="uk-margin">
-                                <input class="uk-input" type="text" placeholder="Username">
-                            </div>
-                            <div class="uk-margin">
-                                <input class="uk-input" type="password" placeholder="Password">
-                            </div>
-                            <div class="uk-margin">
-                                <a class="uk-button uk-button-danger uk-width-1-1" href="03_home.html">Log In</a>
-                            </div>
-                            <div class="uk-margin uk-text-center">
-                                <a href="01_login-in.html">Forgotten password?</a>
-                            </div>
-                            <hr>
-                            <div class="uk-text-center">
-                                <span>Don’t have an account?</span>
-                                <a class="uk-margin-small-left" asp-action="Register">Register</a>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="uk-margin">
+                            <input asp-for="Password" class="uk-input" type="password" placeholder="Password">
+                        </div>
+                        <div class="uk-margin">
+                            <input class="uk-button uk-button-danger uk-width-1-1"
+                                   type="submit" value="Log In">
+                        </div>
+                        <div class="uk-margin uk-text-center">
+                            <a href="01_login-in.html">Forgotten password?</a>
+                        </div>
+                        <hr>
+                        <div class="uk-text-center">
+                            <span>Don’t have an account?</span>
+                            <a class="uk-margin-small-left" asp-action="Register">Register</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
-</div>
+    </div>
+</main>
 
 <script src="~/js/libs.js"></script>
 <script src="~/js/main.js"></script>
-</body>
 
 </html>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kXsy6yXZloHImhDQvVdsUV3s9o3JfJYl+aE3puCPQel2o9UdSEFGGATf+ntylralGYoSlE059KZ85j+d3JJ0Hg==",
+  "dgSpecHash": "XUrkPI0hUYmO+kSUE+AaE6Hey84NsQvELaFGeXBQds/OFk61V9ClEpfauuP4Qc/CC4Ey1xdOfGZaLr/6dnXrZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Booba\\RiderProjects\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
+  "projectFilePath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Application\\TeamHost.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Booba\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Booba\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
