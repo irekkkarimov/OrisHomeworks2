@@ -333,7 +333,8 @@
       },
       "TeamHost.Domain/1.0.0": {
         "dependencies": {
-          "MediatR": "12.2.0"
+          "MediatR": "12.2.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.16"
         },
         "runtime": {
           "TeamHost.Domain.dll": {}

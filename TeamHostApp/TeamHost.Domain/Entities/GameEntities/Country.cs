@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TeamHost.Domain.Common;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Domain.Entities.GameEntities;
 
@@ -27,7 +28,8 @@ public class Country : BaseEntity
     /// </summary>
     [MaxLength(3)]
     public string Alpha3 { get; set; }
-    
-    [NotMapped]
-    public List<Company> Developers { get; set; }
+
+    [NotMapped] public List<Company> Companies { get; set; } = new();
+
+    [NotMapped] public List<UserInfo> UserInfos { get; set; } = new();
 }

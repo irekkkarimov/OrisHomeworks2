@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using TeamHost.Application.DTOs.User;
+using TeamHost.Application.Interfaces.Repositories;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Application.Features.Users.Commands;
 
@@ -16,31 +18,31 @@ public class UserRegisterCommand : IRequest<bool>
 
 internal class UserRegisterCommandHandler : IRequestHandler<UserRegisterCommand, bool>
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<User> _signInManager;
+    private readonly IGenericRepository<UserInfo> _userInfoRepository;
 
-    public UserRegisterCommandHandler(SignInManager<IdentityUser> signInManager)
+    public UserRegisterCommandHandler(SignInManager<User> signInManager,
+        IGenericRepository<UserInfo> userInfoRepository)
     {
         _signInManager = signInManager;
+        _userInfoRepository = userInfoRepository;
     }
 
     public async Task<bool> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
     {
-        var newIdentityUser = new IdentityUser
+        var newUser = new User
         {
             UserName = request.Request.Username,
             Email = request.Request.Email
         };
 
-        var result = await _signInManager.UserManager.CreateAsync(newIdentityUser, request.Request.Password);
-
-        if (!result.Errors.Any())
-            return result.Succeeded;
+        var result = await _signInManager.UserManager.CreateAsync(newUser, request.Request.Password);
 
         foreach (var error in result.Errors)
         {
             Console.WriteLine(error.Description);
         }
-
+        
         return result.Succeeded;
     }
 }

@@ -89,7 +89,7 @@
                         </a>
                     </div>
                     <div class="game-card__info">
-                        <a class="game-card__title">@game.Name</a>
+                        <a asp-action="Index" asp-route-gameName="@game.Name" asp-controller="GameProfile" class="game-card__title">@game.Name</a>
                         <div class="game-card__genre">@string.Join('/', game.Categories.Select(i => i.Name))</div>
                         <div class="game-card__rating-and-price">
                             <div class="game-card__rating">

@@ -1,5 +1,4 @@
-@page
-@model TeamHostApp.WEB.Views.Profile.Index
+@model TeamHost.Application.Features.Users.Queries.GetUserInfoResponse
 
 @{
     Layout = Layout;
@@ -26,8 +25,8 @@
                             <img src="~/img/profile.png" alt="profile">
                         </div>
                         <div class="user-info__box">
-                            <div class="user-info__title">John Doe</div>
-                            <div class="user-info__text">Egypt, Member since May 2022</div>
+                            <div class="user-info__title">@Model.FirstName @Model.LastName</div>
+                            <div class="user-info__text">@Model.Country.Name, Member since May 2022</div>
                         </div>
                     </div>
                     <a class="uk-button uk-button-danger" href="#!">
@@ -40,7 +39,7 @@
                     <h3 class="uk-text-lead">Bio</h3>
                 </div>
                 <div class="widjet__body">
-                    <span>Here you can put your biography you need try to make it attractive and professional, just be honest and polite.</span>
+                    <span>@Model.Bio</span>
                 </div>
             </div>
             <div class="widjet --activity">

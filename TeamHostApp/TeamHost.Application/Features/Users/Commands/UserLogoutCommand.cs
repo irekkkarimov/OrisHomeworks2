@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Application.Features.Users.Commands;
 
@@ -9,9 +10,9 @@ public class UserLogoutCommand : IRequest
 
 internal class UserLogoutCommandHandler : IRequestHandler<UserLogoutCommand>
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<User> _signInManager;
 
-    public UserLogoutCommandHandler(SignInManager<IdentityUser> signInManager)
+    public UserLogoutCommandHandler(SignInManager<User> signInManager)
     {
         _signInManager = signInManager;
     }

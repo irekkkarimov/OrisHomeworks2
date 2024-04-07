@@ -6,8 +6,10 @@ using TeamHost.Application.DTOs.Game;
 using TeamHost.Application.DTOs.Platform;
 using TeamHost.Application.DTOs.StaticFile;
 using TeamHost.Application.Features.Games.Queries;
+using TeamHost.Application.Features.Users.Queries;
 using TeamHost.Domain.Entities;
 using TeamHost.Domain.Entities.GameEntities;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Application.Profiles;
 
@@ -41,5 +43,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Company, GetCompanyDto>();
 
         CreateMap<StaticFile, GetStaticFileDto>();
+
+        CreateMap<UserInfo, GetUserInfoResponse>();
     }
 }

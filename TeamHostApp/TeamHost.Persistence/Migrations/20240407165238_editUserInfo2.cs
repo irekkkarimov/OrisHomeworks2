@@ -5,7 +5,7 @@
 namespace TeamHost.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class identityFix : Migration
+    public partial class editUserInfo2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,14 +1,16 @@
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TeamHost.Domain.Common;
 using TeamHost.Domain.Common.Interfaces;
 using TeamHost.Domain.Entities;
 using TeamHost.Domain.Entities.GameEntities;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Persistence.Contexts;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
 {
     private readonly IDomainEventDispatcher? _dispatcher;
 
@@ -26,6 +28,7 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnConfiguring(optionsBuilder);
         optionsBuilder.UseNpgsql();
+        optionsBuilder.EnableDetailedErrors();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,6 +58,7 @@ public class ApplicationDbContext : IdentityDbContext
         return SaveChangesAsync().GetAwaiter().GetResult();
     }
 
+    public DbSet<UserInfo> UserInfos { get; set; }
     public DbSet<Game> Games { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Company> Companies { get; set; }

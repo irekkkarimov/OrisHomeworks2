@@ -1,12 +1,25 @@
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TeamHost.Application.Features.Users.Queries;
 
 namespace TeamHostApp.WEB.Controllers;
 
+[Authorize]
 public class ProfileController : Controller
 {
-    // GET
-    public IActionResult Index()
+    private readonly IMediator _mediator;
+
+    public ProfileController(IMediator mediator)
     {
-        return View();
+        _mediator = mediator;
+    }
+
+    // GET
+    public async Task<IActionResult> Index()
+    {
+        var getUserInfoQuery = new GetUserInfoQuery();
+        var userInfo = await _mediator.Send(getUserInfoQuery);
+        return View(userInfo);
     }
 }

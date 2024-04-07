@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using TeamHost.Application.DTOs.User;
+using TeamHost.Application.Interfaces.Repositories;
+using TeamHost.Domain.Entities.User;
 
 namespace TeamHost.Application.Features.Users.Commands;
 
@@ -16,9 +18,9 @@ public class UserLoginCommand : IRequest<bool>
 
 internal class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, bool>
 {
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly SignInManager<User> _signInManager;
 
-    public UserLoginCommandHandler(SignInManager<IdentityUser> signInManager)
+    public UserLoginCommandHandler(SignInManager<User> signInManager)
     {
         _signInManager = signInManager;
     }

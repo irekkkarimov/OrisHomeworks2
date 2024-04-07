@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TeamHost.Application.Interfaces.Repositories;
+using TeamHost.Domain.Entities.User;
 using TeamHost.Persistence.Contexts;
 using TeamHost.Persistence.Repositories;
 
@@ -14,7 +15,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddDbContext(configuration);
         services.AddRepositories();
-        services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+        services.AddIdentity<User, IdentityRole<Guid>>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddEntityFrameworkStores<ApplicationDbContext>();
         return services;
     }

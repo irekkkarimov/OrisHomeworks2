@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TeamHost.Application.DTOs.User;
 using TeamHost.Application.Features.Users.Commands;
 
@@ -23,6 +22,7 @@ public class AuthController : Controller
 
     public async Task<IActionResult> LoginAsync([FromForm] UserLoginDto userLoginDto)
     {
+        Console.WriteLine(userLoginDto.Email);
         if (!ModelState.IsValid)
             return View();
 

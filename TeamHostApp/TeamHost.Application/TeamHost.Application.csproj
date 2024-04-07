@@ -19,7 +19,6 @@
       <Folder Include="Common\Mappings\" />
       <Folder Include="DTOs\Email\" />
       <Folder Include="Features\Games\Commands\" />
-      <Folder Include="Features\Users\Queries\" />
     </ItemGroup>
 
     <ItemGroup>
