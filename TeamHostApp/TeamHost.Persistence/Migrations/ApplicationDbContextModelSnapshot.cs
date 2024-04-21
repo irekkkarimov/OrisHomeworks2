@@ -37,6 +37,21 @@ namespace TeamHost.Persistence.Migrations
                     b.ToTable("CategoryGame");
                 });
 
+            modelBuilder.Entity("ChatUserInfo", b =>
+                {
+                    b.Property<int>("ChatsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserInfosId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ChatsId", "UserInfosId");
+
+                    b.HasIndex("UserInfosId");
+
+                    b.ToTable("ChatUserInfo");
+                });
+
             modelBuilder.Entity("CompanyGame", b =>
                 {
                     b.Property<int>("CompaniesId")
@@ -195,6 +210,79 @@ namespace TeamHost.Persistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("TeamHost.Domain.Entities.ChatEntities.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Chats");
+                });
+
+            modelBuilder.Entity("TeamHost.Domain.Entities.ChatEntities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("MessageContent")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UserInfoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserInfoId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("TeamHost.Domain.Entities.GameEntities.Category", b =>
@@ -379,7 +467,7 @@ namespace TeamHost.Persistence.Migrations
                     b.ToTable("StaticFiles");
                 });
 
-            modelBuilder.Entity("TeamHost.Domain.Entities.User.User", b =>
+            modelBuilder.Entity("TeamHost.Domain.Entities.UserEntities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -444,7 +532,7 @@ namespace TeamHost.Persistence.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("TeamHost.Domain.Entities.User.UserInfo", b =>
+            modelBuilder.Entity("TeamHost.Domain.Entities.UserEntities.UserInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -458,7 +546,7 @@ namespace TeamHost.Persistence.Migrations
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("CreatedBy")
@@ -507,6 +595,21 @@ namespace TeamHost.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ChatUserInfo", b =>
+                {
+                    b.HasOne("TeamHost.Domain.Entities.ChatEntities.Chat", null)
+                        .WithMany()
+                        .HasForeignKey("ChatsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.UserInfo", null)
+                        .WithMany()
+                        .HasForeignKey("UserInfosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CompanyGame", b =>
                 {
                     b.HasOne("TeamHost.Domain.Entities.GameEntities.Company", null)
@@ -548,7 +651,7 @@ namespace TeamHost.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("TeamHost.Domain.Entities.User.User", null)
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -557,7 +660,7 @@ namespace TeamHost.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("TeamHost.Domain.Entities.User.User", null)
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -572,7 +675,7 @@ namespace TeamHost.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TeamHost.Domain.Entities.User.User", null)
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -581,11 +684,39 @@ namespace TeamHost.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("TeamHost.Domain.Entities.User.User", null)
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TeamHost.Domain.Entities.ChatEntities.Chat", b =>
+                {
+                    b.HasOne("TeamHost.Domain.Entities.StaticFile", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
+                    b.Navigation("Image");
+                });
+
+            modelBuilder.Entity("TeamHost.Domain.Entities.ChatEntities.Message", b =>
+                {
+                    b.HasOne("TeamHost.Domain.Entities.ChatEntities.Chat", "Chat")
+                        .WithMany("Messages")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.UserInfo", "SenderInfo")
+                        .WithMany()
+                        .HasForeignKey("UserInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("SenderInfo");
                 });
 
             modelBuilder.Entity("TeamHost.Domain.Entities.GameEntities.Company", b =>
@@ -606,22 +737,27 @@ namespace TeamHost.Persistence.Migrations
                         .HasForeignKey("GameId");
                 });
 
-            modelBuilder.Entity("TeamHost.Domain.Entities.User.UserInfo", b =>
+            modelBuilder.Entity("TeamHost.Domain.Entities.UserEntities.UserInfo", b =>
                 {
                     b.HasOne("TeamHost.Domain.Entities.GameEntities.Country", "Country")
                         .WithMany("UserInfos")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("TeamHost.Domain.Entities.User.User", "User")
+                    b.HasOne("TeamHost.Domain.Entities.UserEntities.User", "User")
                         .WithOne("UserInfo")
-                        .HasForeignKey("TeamHost.Domain.Entities.User.UserInfo", "UserId")
+                        .HasForeignKey("TeamHost.Domain.Entities.UserEntities.UserInfo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Country");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TeamHost.Domain.Entities.ChatEntities.Chat", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("TeamHost.Domain.Entities.GameEntities.Country", b =>
@@ -636,7 +772,7 @@ namespace TeamHost.Persistence.Migrations
                     b.Navigation("Images");
                 });
 
-            modelBuilder.Entity("TeamHost.Domain.Entities.User.User", b =>
+            modelBuilder.Entity("TeamHost.Domain.Entities.UserEntities.User", b =>
                 {
                     b.Navigation("UserInfo");
                 });

@@ -2,6 +2,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TeamHost.Application.DTOs.User;
 using TeamHost.Application.Features.Users.Commands;
+using TeamHost.Application.Features.Users.Commands.PostUserLogin;
+using TeamHost.Application.Features.Users.Commands.PostUserLogout;
+using TeamHost.Application.Features.Users.Commands.PostUserRegister;
 
 namespace TeamHostApp.WEB.Controllers;
 

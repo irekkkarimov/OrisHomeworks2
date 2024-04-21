@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using TeamHost.Domain.Common;
 using TeamHost.Domain.Common.Interfaces;
 using TeamHost.Domain.Entities;
+using TeamHost.Domain.Entities.ChatEntities;
 using TeamHost.Domain.Entities.GameEntities;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHost.Persistence.Contexts;
 
@@ -65,4 +66,6 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, 
     public DbSet<Country> Countries { get; set; }
     public DbSet<Platform> Platforms { get; set; }
     public DbSet<StaticFile> StaticFiles { get; set; }
+    public DbSet<Chat> Chats { get; set; }
+    public DbSet<Message> Messages { get; set; }
 }

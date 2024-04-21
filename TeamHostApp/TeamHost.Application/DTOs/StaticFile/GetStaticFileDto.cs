@@ -5,7 +5,7 @@ public class GetStaticFileDto
     /// <summary>
     /// Путь
     /// </summary>
-    public string Path { get; set; }
+    public string? Path { get; set; }
 
     /// <summary>
     /// Размер в КБ
@@ -15,12 +15,12 @@ public class GetStaticFileDto
     /// <summary>
     /// Наименование
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Расширение
     /// </summary>
-    public string? Extension { get; private set; }
+    public string? Extension { get; set; }
     
     /// <summary>
     /// Является ли главным изображением игры

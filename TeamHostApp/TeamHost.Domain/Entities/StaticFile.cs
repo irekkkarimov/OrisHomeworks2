@@ -3,6 +3,9 @@ using TeamHost.Domain.Entities.GameEntities;
 
 namespace TeamHost.Domain.Entities;
 
+/// <summary>
+/// Статичный файл
+/// </summary>
 public class StaticFile : BaseAuditableEntity
 {
     /// <summary>
@@ -18,7 +21,7 @@ public class StaticFile : BaseAuditableEntity
     }
 
     /// <summary>
-    /// Конструктор
+    /// Пустой конструктор
     /// </summary>
     private StaticFile()
     {
@@ -30,7 +33,7 @@ public class StaticFile : BaseAuditableEntity
     public string Path { get; set; }
 
     /// <summary>
-    /// Размер в КБ
+    /// Размер (в Байтах)
     /// </summary>
     public int? Size { get; set; }
 
@@ -39,7 +42,10 @@ public class StaticFile : BaseAuditableEntity
     /// </summary>
     public string Name { get; set; }
 
-    public bool IsMainImage { get; set; } = false;
+    /// <summary>
+    /// Является ли превью-картинкой
+    /// </summary>
+    public bool IsMainImage { get; set; }
 
     /// <summary>
     /// Расширение

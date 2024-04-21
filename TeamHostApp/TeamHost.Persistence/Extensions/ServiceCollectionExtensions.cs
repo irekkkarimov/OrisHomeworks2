@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TeamHost.Application.Interfaces.Repositories;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 using TeamHost.Persistence.Contexts;
 using TeamHost.Persistence.Repositories;
 

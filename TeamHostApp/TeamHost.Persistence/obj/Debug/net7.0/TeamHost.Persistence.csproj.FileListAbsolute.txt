@@ -36,3 +36,5 @@ C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\obj\Debug
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\obj\Debug\net7.0\TeamHost.Persistence.pdb
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\obj\Debug\net7.0\TeamHost.Persistence.genruntimeconfig.cache
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\obj\Debug\net7.0\ref\TeamHost.Persistence.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\bin\Debug\net7.0\Shared.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Persistence\bin\Debug\net7.0\Shared.pdb

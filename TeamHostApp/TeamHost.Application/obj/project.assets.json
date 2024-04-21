@@ -412,6 +412,16 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        }
+      },
       "TeamHost.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -980,6 +990,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
+    },
     "TeamHost.Domain/1.0.0": {
       "type": "project",
       "path": "../TeamHost.Domain/TeamHost.Domain.csproj",
@@ -993,6 +1008,7 @@
       "FluentValidation.AspNetCore >= 11.3.0",
       "MediatR >= 12.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.16",
+      "Shared >= 1.0.0",
       "TeamHost.Domain >= 1.0.0"
     ]
   },
@@ -1025,6 +1041,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\Shared\\Shared.csproj"
+            },
             "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj": {
               "projectPath": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHost.Domain\\TeamHost.Domain.csproj"
             }

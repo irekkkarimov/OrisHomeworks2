@@ -1,5 +1,4 @@
-@page
-@model TeamHostApp.WEB.Views.Chats.Index
+@model List<TeamHost.Application.DTOs.Chats.GetChatDto>
 
 @{
     Layout = Layout;
@@ -33,21 +32,22 @@
                     </div>
                     <div class="chat-user-list__body">
                         <ul>
-                            <li>
-                                <div class="user-item --active">
-                                    <div class="user-item__avatar">
-                                        <img src="~/img/user-list-1.png" alt="user">
-                                    </div>
-                                    <div class="user-item__desc">
-                                        <div class="user-item__name">Lester Barry</div>
-                                        <div class="user-item__text">Let’s play now!</div>
-                                    </div>
-                                    <div class="user-item__info">
-                                        <div class="user-item__time">4m</div>
-                                        <div class="user-item__count">1</div>
-                                    </div>
-                                </div>
-                            </li>
+                           @foreach (var chat in Model)
+                           {
+                               var img = chat.Image is null ? "" : $"{chat.Image.Path}{chat.Image.Name}{chat.Image.Extension}";
+                               
+                               <li>
+                                   <div class="user-item --active">
+                                       <div class="user-item__avatar">
+                                           <img src="@img" alt="user">
+                                       </div>
+                                       <div class="user-item__desc">
+                                           <div class="user-item__name">@chat.Title</div>
+                                           <div class="user-item__text">@chat.LastMessage</div>
+                                       </div>
+                                   </div>
+                               </li>
+                           }
                             <li>
                                 <div class="user-item --active">
                                     <div class="user-item__avatar">

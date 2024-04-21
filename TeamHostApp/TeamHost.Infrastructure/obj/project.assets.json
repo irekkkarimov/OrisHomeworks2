@@ -412,6 +412,16 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        }
+      },
       "TeamHost.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -421,6 +431,7 @@
           "FluentValidation.AspNetCore": "11.3.0",
           "MediatR": "12.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.16",
+          "Shared": "1.0.0",
           "TeamHost.Domain": "1.0.0"
         },
         "compile": {
@@ -997,6 +1008,11 @@
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     },
     "TeamHost.Application/1.0.0": {
       "type": "project",

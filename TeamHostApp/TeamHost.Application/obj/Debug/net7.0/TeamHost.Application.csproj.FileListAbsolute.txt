@@ -28,3 +28,5 @@ C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\obj\Debug
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\obj\Debug\net7.0\refint\TeamHost.Application.dll
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\obj\Debug\net7.0\TeamHost.Application.pdb
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\obj\Debug\net7.0\ref\TeamHost.Application.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\bin\Debug\net7.0\Shared.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Application\bin\Debug\net7.0\Shared.pdb

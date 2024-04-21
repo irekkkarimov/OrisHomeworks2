@@ -7,27 +7,46 @@ using TeamHost.Domain.Entities.GameEntities;
 
 namespace TeamHost.Application.Features.Games.Queries;
 
+/// <summary>
+/// Запрос на получение игры
+/// </summary>
 public class GetGameQuery : IRequest<GetGameDto>
 {
+    /// <summary>
+    /// Конструктор
+    /// </summary>
+    /// <param name="gameName">Название игры</param>
     public GetGameQuery(string gameName)
     {
         GameName = gameName;
     }
     
+    /// <summary>
+    /// Название игры
+    /// </summary>
     public string GameName { get; set; } = null!;
 }
 
+/// <summary>
+/// Обработчик запроса на получение игры
+/// </summary>
 internal class GetGameQueryHandler : IRequestHandler<GetGameQuery, GetGameDto>
 {
     private readonly IGameRepository _gameRepository;
     private readonly IMapper _mapper;
 
+    /// <summary>
+    /// Конструктор
+    /// </summary>
+    /// <param name="gameRepository">Репозиторий игр</param>
+    /// <param name="mapper">Маппер объектов</param>
     public GetGameQueryHandler(IGameRepository gameRepository, IMapper mapper)
     {
         _gameRepository = gameRepository;
         _mapper = mapper;
     }
 
+    /// <inheritdoc/>
     public async Task<GetGameDto> Handle(GetGameQuery request, CancellationToken cancellationToken)
     {
         var gameByName = await _gameRepository.Entities

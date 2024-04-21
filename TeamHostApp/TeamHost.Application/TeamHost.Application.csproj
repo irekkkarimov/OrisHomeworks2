@@ -18,10 +18,13 @@
       <Folder Include="Common\Exceptions\" />
       <Folder Include="Common\Mappings\" />
       <Folder Include="DTOs\Email\" />
+      <Folder Include="DTOs\Message\" />
+      <Folder Include="Features\Chats\Commands\" />
       <Folder Include="Features\Games\Commands\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Shared\Shared.csproj" />
       <ProjectReference Include="..\TeamHost.Domain\TeamHost.Domain.csproj" />
     </ItemGroup>
 

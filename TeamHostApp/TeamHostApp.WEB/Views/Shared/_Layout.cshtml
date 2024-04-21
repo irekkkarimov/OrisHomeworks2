@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using TeamHost.Domain.Entities.User
-@inject UserManager<User> UserManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TeamHost.Domain.Entities.UserEntities
 @inject SignInManager<User> SignInManager
+@inject IViewLocalizer Localizer
+@* @model TeamHost.Application.DTOs.UserInfo.UpdateUserInfoRequest *@
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +39,14 @@
                 </div>
             </div>
             <div class="page-header__content">
+                <a style="margin-right: 20px" class="uk-button uk-button-danger" asp-route-culture="ru" asp-controller="Language"
+                   asp-action="ChangeLanguage">
+                    Русский
+                </a>
+                <a style="margin-right: 20px" class="uk-button uk-button-danger" asp-route-culture="en" asp-controller="Language"
+                   asp-action="ChangeLanguage">
+                    English
+                </a>
                 <div class="page-header__search">
                     <div class="search">
                         <div class="search__input">
@@ -52,7 +62,7 @@
                 <div class="page-header__action">
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <a class="uk-button uk-button-danger" asp-controller="Auth" asp-action="Logout">Logout</a>
+                        <a class="uk-button uk-button-danger" asp-controller="Auth" asp-action="Logout">@Localizer["Logout"]</a>
                         <a class="action-btn" href="#!">
                             <i class="ico_message"></i><span></span>
                         </a>
@@ -65,7 +75,7 @@
                     }
                     @if (!SignInManager.IsSignedIn(User))
                     {
-                        <a class="uk-button uk-button-danger" asp-controller="Auth" asp-action="Login">Login</a>
+                        <a class="uk-button uk-button-danger" asp-controller="Auth" asp-action="Login">@Localizer["Login"]</a>
                     }
                 </div>
             </div>
@@ -77,65 +87,65 @@
                 <ul class="uk-nav">
                     <li class="uk-active">
                         <a asp-controller="Home">
-                            <i class="ico_home"></i><span>Home</span>
+                            <i class="ico_home"></i><span>@Localizer["Home"]</span>
                         </a>
                     </li>
                     <li class="uk-nav-header">Account</li>
                     <li>
                         <a asp-controller="Profile">
-                            <i class="ico_profile"></i><span>Profile</span>
+                            <i class="ico_profile"></i><span>@Localizer["Profile"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Favourites">
-                            <i class="ico_favourites"></i><span>Favourites</span><span class="count">15</span>
+                            <i class="ico_favourites"></i><span>@Localizer["Favourites"]</span><span class="count">15</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Chats">
-                            <i class="ico_chats"></i><span>Chats</span>
+                            <i class="ico_chats"></i><span>@Localizer["Chats"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Friends">
-                            <i class="ico_friends"></i><span>Friends</span>
+                            <i class="ico_friends"></i><span>@Localizer["Friends"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Wallet">
-                            <i class="ico_wallet"></i><span>Wallet</span>
+                            <i class="ico_wallet"></i><span>@Localizer["Wallet"]</span>
                         </a>
                     </li>
-                    <li class="uk-nav-header">Main</li>
+                    <li class="uk-nav-header">@Localizer["Main"]</li>
                     <li>
                         <a asp-controller="Store">
-                            <i class="ico_store"></i><span>Store</span>
+                            <i class="ico_store"></i><span>@Localizer["Store"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Market">
-                            <i class="ico_market"></i><span>Market</span>
+                            <i class="ico_market"></i><span>@Localizer["Market"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Streams">
-                            <i class="ico_streams"></i><span>Streams</span>
+                            <i class="ico_streams"></i><span>@Localizer["Streams"]</span>
                         </a>
                     </li>
                     <li>
                         <a asp-controller="Community">
-                            <i class="ico_community"></i><span>Community</span>
+                            <i class="ico_community"></i><span>@Localizer["Community"]</span>
                         </a>
                     </li>
-                    <li class="uk-nav-header">Support</li>
+                    <li class="uk-nav-header">@Localizer["Support"]</li>
                     <li>
                         <a href="#modal-report" data-uk-toggle>
-                            <i class="ico_report"></i><span>Report</span>
+                            <i class="ico_report"></i><span>@Localizer["Report"]</span>
                         </a>
                     </li>
                     <li>
                         <a href="#modal-help" data-uk-toggle>
-                            <i class="ico_help"></i><span>Help</span>
+                            <i class="ico_help"></i><span>@Localizer["Help"]</span>
                         </a>
                     </li>
                 </ul>

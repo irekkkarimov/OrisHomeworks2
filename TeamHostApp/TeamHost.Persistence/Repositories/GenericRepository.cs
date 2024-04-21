@@ -34,9 +34,9 @@ where T : class, IEntity
         return entity;
     }
 
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 
     public Task DeleteAsync(T entity)

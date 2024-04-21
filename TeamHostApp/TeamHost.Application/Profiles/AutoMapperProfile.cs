@@ -1,5 +1,6 @@
 using AutoMapper;
 using TeamHost.Application.DTOs.Category;
+using TeamHost.Application.DTOs.Chats;
 using TeamHost.Application.DTOs.Company;
 using TeamHost.Application.DTOs.Country;
 using TeamHost.Application.DTOs.Game;
@@ -8,8 +9,9 @@ using TeamHost.Application.DTOs.StaticFile;
 using TeamHost.Application.Features.Games.Queries;
 using TeamHost.Application.Features.Users.Queries;
 using TeamHost.Domain.Entities;
+using TeamHost.Domain.Entities.ChatEntities;
 using TeamHost.Domain.Entities.GameEntities;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHost.Application.Profiles;
 
@@ -45,5 +47,7 @@ public class AutoMapperProfile : Profile
         CreateMap<StaticFile, GetStaticFileDto>();
 
         CreateMap<UserInfo, GetUserInfoResponse>();
+
+        CreateMap<Chat, GetChatDto>();
     }
 }

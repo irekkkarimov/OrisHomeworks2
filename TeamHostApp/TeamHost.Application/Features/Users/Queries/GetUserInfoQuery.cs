@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TeamHost.Application.Interfaces.Repositories;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHost.Application.Features.Users.Queries;
 
@@ -44,6 +44,8 @@ internal class GetUserInfoQueryHandler : IRequestHandler<GetUserInfoQuery, GetUs
 
         if (userInfo is null)
             throw new Exception("User Info is null");
+
+        Console.WriteLine(userInfo.Country?.Name);
         
         return _mapper.Map<GetUserInfoResponse>(currentUser.UserInfo);
     }

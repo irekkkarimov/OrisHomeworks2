@@ -32,3 +32,5 @@ C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\obj\De
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\obj\Debug\net7.0\refint\TeamHost.Infrastructure.dll
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\obj\Debug\net7.0\TeamHost.Infrastructure.pdb
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\obj\Debug\net7.0\ref\TeamHost.Infrastructure.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\bin\Debug\net7.0\Shared.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHost.Infrastructure\bin\Debug\net7.0\Shared.pdb

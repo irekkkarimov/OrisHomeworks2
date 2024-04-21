@@ -1,10 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TeamHost.Domain.Common;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHost.Domain.Entities.GameEntities;
 
+/// <summary>
+/// Страна
+/// </summary>
 public class Country : BaseEntity
 {
     /// <summary>
@@ -29,7 +32,13 @@ public class Country : BaseEntity
     [MaxLength(3)]
     public string Alpha3 { get; set; }
 
+    /// <summary>
+    /// Список компаний, связанных с этой страной
+    /// </summary>
     [NotMapped] public List<Company> Companies { get; set; } = new();
 
+    /// <summary>
+    /// Список <see cref="UserInfo"/>, связанных с этой страной
+    /// </summary>
     [NotMapped] public List<UserInfo> UserInfos { get; set; } = new();
 }

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TeamHost.Domain.Entities.User;
+using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHost.Persistence.Configurations;
 
@@ -15,6 +15,7 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
 
         builder.HasOne(i => i.Country)
             .WithMany(i => i.UserInfos)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.SetNull);
     }
 }

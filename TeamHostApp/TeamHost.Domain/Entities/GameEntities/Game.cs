@@ -3,10 +3,13 @@ using TeamHost.Domain.Common;
 
 namespace TeamHost.Domain.Entities.GameEntities;
 
+/// <summary>
+/// Игра
+/// </summary>
 public class Game : BaseAuditableEntity
 {
     /// <summary>
-    /// Имя
+    /// Название
     /// </summary>
     public string Name { get; set; } = null!;
 
@@ -52,7 +55,7 @@ public class Game : BaseAuditableEntity
     public List<Platform> Platforms { get; set; } = new();
 
     /// <summary>
-    /// Компания-разработчик
+    /// Компания
     /// </summary>
     public List<Company> Companies { get; set; } = new();
 

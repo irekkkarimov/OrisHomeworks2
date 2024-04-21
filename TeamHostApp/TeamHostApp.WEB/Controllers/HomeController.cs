@@ -1,11 +1,16 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using TeamHostApp.WEB.Models;
 
 namespace TeamHostApp.WEB.Controllers;
 
 public class HomeController : Controller
 {
+    public HomeController()
+    {
+    }
+
     public IActionResult Index()
     {
         return View();

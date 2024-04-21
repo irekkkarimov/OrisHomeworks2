@@ -116,3 +116,16 @@ C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\en\TeamHostApp.WEB.resources.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\TeamHostApp.WEB.Resources.Views.Home.Index.en.resources
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\TeamHostApp.WEB.csproj.GenerateResource.cache
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\en\TeamHostApp.WEB.resources.cs
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\en\TeamHostApp.WEB.resources.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\ru\TeamHostApp.WEB.resources.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\TeamHostApp.WEB.Resources.Views.Home.Index.ru.resources
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\ru\TeamHostApp.WEB.resources.cs
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\ru\TeamHostApp.WEB.resources.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\TeamHostApp.WEB.Resources.Views.Shared._Layout.en.resources
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\obj\Debug\net7.0\TeamHostApp.WEB.Resources.Views.Shared._Layout.ru.resources
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\Shared.dll
+C:\Users\Booba\Desktop\OrisHomeworks2\TeamHostApp\TeamHostApp.WEB\bin\Debug\net7.0\Shared.pdb
