@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hG+xJscriTuaTSd5LJ+QFAeLj9YzrasaLNdH+fsvqx8=",
+  "Hash": "E8YoyQ7pLwBoToU9VePMwh+rjmmejSwX/SFuhq96Dvg=",
   "Source": "TeamHostApp.WEB",
   "BasePath": "_content/TeamHostApp.WEB",
   "Mode": "Default",
@@ -2533,6 +2533,23 @@
       "OriginalItemSpec": "wwwroot\\img\\user-list-9.png"
     },
     {
+      "Identity": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\js\\chat.js",
+      "SourceId": "TeamHostApp.WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\",
+      "BasePath": "_content/TeamHostApp.WEB",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
       "Identity": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\js\\libs.js",
       "SourceId": "TeamHostApp.WEB",
       "SourceType": "Discovered",
@@ -2565,6 +2582,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\main.js"
+    },
+    {
+      "Identity": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "TeamHostApp.WEB",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\",
+      "BasePath": "_content/TeamHostApp.WEB",
+      "RelativePath": "js/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js"
     },
     {
       "Identity": "C:\\Users\\Booba\\Desktop\\OrisHomeworks2\\TeamHostApp\\TeamHostApp.WEB\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

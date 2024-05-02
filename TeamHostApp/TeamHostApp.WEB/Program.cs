@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Localization;
 using TeamHost.Application.Extensions;
+using TeamHost.Application.Interfaces;
 using TeamHost.Infrastructure.Extensions;
 using TeamHost.Persistence.Extensions;
 using TeamHostApp.WEB.Controllers;
+using TeamHostApp.WEB.Hub;
 using TeamHostApp.WEB.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,8 @@ builder.Services
     .AddPersistenceLayer(builder.Configuration);
 
 builder.Services.AddScoped<IStringLocalizer<HomeController>, HomeLocalizer>();
+builder.Services.AddSignalR()
+    .Services.AddSingleton<IHubService, HubService>();
 
 // builder.Services.AddAuthentication(options =>
 // {
@@ -57,6 +61,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<ChatHub>("/chat");
 
 app.MapControllerRoute(
     name: "default",

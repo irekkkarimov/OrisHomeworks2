@@ -5,7 +5,6 @@ namespace TeamHost.Application.DTOs.Chats;
 
 public class GetChatDto
 {
-    public string Title { get; set; } = null!;
-    public GetStaticFileDto? Image { get; set; }
-    public string? LastMessage { get; set; }
+    public Guid CurrentUserId { get; set; }
+    public List<GetChatDtoItem> Chats { get; set; } = new();
 }

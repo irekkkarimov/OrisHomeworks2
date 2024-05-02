@@ -52,6 +52,8 @@ internal class UserLoginCommandHandler : IRequestHandler<UserLoginCommand, bool>
         var isPasswordCorrect =
             await _signInManager.PasswordSignInAsync(userByEmail, command.Request.Password, true, false);
 
+        Console.WriteLine(isPasswordCorrect);
+        
         return isPasswordCorrect.Succeeded;
     }
 }

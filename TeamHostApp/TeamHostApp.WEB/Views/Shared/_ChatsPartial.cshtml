@@ -1,0 +1,20 @@
+@model List<TeamHost.Application.DTOs.Chats.GetChatDtoItem>
+
+<ul>
+    @foreach (var chat in Model)
+    {
+        var img = chat.Image is null ? "" : $"{chat.Image.Path}{chat.Image.Name}{chat.Image.Extension}";
+                               
+        <li>
+            <div class="user-item --active">
+                <div class="user-item__avatar">
+                    <img src="@img" alt="user">
+                </div>
+                <div class="user-item__desc">
+                    <div class="user-item__name">@chat.Title</div>
+                    <div class="user-item__text">@chat.LastMessage</div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

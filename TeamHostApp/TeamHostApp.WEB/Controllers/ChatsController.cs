@@ -8,6 +8,7 @@ using TeamHost.Domain.Entities.UserEntities;
 
 namespace TeamHostApp.WEB.Controllers;
 
+[Route("[controller]")]
 [Authorize]
 public class ChatsController : Controller
 {
@@ -35,5 +36,23 @@ public class ChatsController : Controller
         var allChats = await _mediator.Send(getAllChatsQuery);
         
         return View(allChats);
+    }
+
+    [HttpGet]
+    [Route("[action]")]
+    public async Task<IActionResult> GetChats()
+    {
+        var currentUserEmail = _signInManager.Context.User.Claims.FirstOrDefault(i => i.Type.Equals(ClaimTypes.Email));
+        if (currentUserEmail is null)
+            throw new ArgumentException("Email Claim not found");
+        
+        var currentUser = await _signInManager.UserManager.FindByEmailAsync(currentUserEmail.Value);
+        if (currentUser is null)
+            throw new ArgumentException("User by Email Claim not found");
+        
+        var getAllChatsQuery = new GetAllChatsQuery(currentUser.Id);
+        var allChats = await _mediator.Send(getAllChatsQuery);
+        
+        return PartialView("_ChatsPartial", allChats.Chats);
     }
 }
