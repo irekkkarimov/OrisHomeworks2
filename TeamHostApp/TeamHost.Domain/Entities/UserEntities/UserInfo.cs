@@ -17,7 +17,7 @@ public class UserInfo : BaseAuditableEntity
     /// <summary>
     /// Пользователь, которому принадлежит информация
     /// </summary>
-    public UserEntities.User User { get; set; } = null!;
+    public User User { get; set; } = null!;
     
     /// <summary>
     /// Имя пользователя

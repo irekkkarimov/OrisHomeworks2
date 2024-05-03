@@ -16,12 +16,12 @@ public class Message : BaseAuditableEntity
     /// <summary>
     /// Id <see cref="UserInfo"/>
     /// </summary>
-    public int UserInfoId { get; set; }
+    public int SenderInfoId { get; set; }
     
     /// <summary>
     /// Информация об отправителе
     /// </summary>
-    public UserEntities.UserInfo SenderInfo { get; set; } = null!;
+    public UserInfo SenderInfo { get; set; } = null!;
 
     /// <summary>
     /// Id чата

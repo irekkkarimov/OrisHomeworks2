@@ -46,7 +46,8 @@ internal class GetAllChatsQueryHandler : IRequestHandler<GetAllChatsQuery, GetCh
     /// </summary>
     /// <param name="chatRepository">Репозиторий чатов</param>
     /// <param name="mapper">Маппер объектов</param>
-    public GetAllChatsQueryHandler(IGenericRepository<Chat> chatRepository, IMapper mapper, SignInManager<User> signInManager)
+    public GetAllChatsQueryHandler(IGenericRepository<Chat> chatRepository, IMapper mapper,
+        SignInManager<User> signInManager)
     {
         _chatRepository = chatRepository;
         _mapper = mapper;
@@ -58,23 +59,38 @@ internal class GetAllChatsQueryHandler : IRequestHandler<GetAllChatsQuery, GetCh
     {
         var userId = _signInManager.Context.User.Claims
             .FirstOrDefault(i => i.Type == ClaimTypes.NameIdentifier)!.Value;
-        
+
         var chats = await _chatRepository
             .Entities
-            .Include(i => i.UserInfos)
             .Where(i => i.UserInfos.Any(e => e.UserId == request.UserId))
             .Select(i => new GetChatDtoItem
             {
-                Title = i.Title,
-                Image = i.Image != null ? new GetStaticFileDto
-                {
-                    Path = i.Image.Path,
-                    Size = i.Image.Size,
-                    Name = i.Image.Name,
-                    Extension = i.Image.Extension,
-                    IsMainImage = i.Image.IsMainImage
-                } : null,
-                LastMessage = i.Messages.Any() ? i.Messages[0].MessageContent : null
+                ChatId = i.Id,
+                Title = i.UserInfos.Count == 2
+                    ? i.UserInfos.FirstOrDefault(e => e.UserId != new Guid(userId))!.FirstName ?? i.Title
+                    : i.Title,
+                Image = i.Image != null
+                    ? new GetStaticFileDto
+                    {
+                        Path = i.Image.Path,
+                        Size = i.Image.Size,
+                        Name = i.Image.Name,
+                        Extension = i.Image.Extension,
+                        IsMainImage = i.Image.IsMainImage
+                    }
+                    : null,
+                IsGroup = i.UserInfos.Count != 2,
+                FriendId = i.UserInfos.Count == 2
+                    ? i.UserInfos.FirstOrDefault(e => e.UserId != new Guid(userId))!.UserId
+                    : null,
+                LastMessage = i.Messages.Any()
+                    ? new GetChatMessageLittle
+                    {
+                        SenderId = i.Messages.OrderByDescending(e => e.CreatedDate).First().SenderInfo.UserId,
+                        SenderName = i.Messages.OrderByDescending(e => e.CreatedDate).First().SenderInfo.FirstName,
+                        Content = i.Messages.OrderByDescending(e => e.CreatedDate).First().MessageContent
+                    }
+                    : null
             })
             .ToListAsync(cancellationToken: cancellationToken);
 

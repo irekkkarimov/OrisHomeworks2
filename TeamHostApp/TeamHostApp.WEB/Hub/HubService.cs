@@ -15,9 +15,11 @@ public class HubService : IHubService
 
     public async Task SendMessageAsync(Message message)
     {
+        Console.WriteLine(message.ReceiverIds.Count);
         if (!message.ReceiverIds.Any())
             return;
 
+        Console.WriteLine(2);
         await _hubContext.Clients.Users(
                 message.ReceiverIds
                     .Select(i => i.ToString())
@@ -26,13 +28,7 @@ public class HubService : IHubService
             {
                 message.Content,
                 message.SenderId,
-                Images = message.Images
-                    .Select(e => new
-                    {
-                        UserId = e.Key,
-                        Image = e.Value
-                    })
-                    .ToList(),
+                Images = message.ImageUrl,
                 message.SenderName
             });
     }

@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using TeamHost.Application.DTOs.Chats;
+using TeamHost.Application.Features.Chats.Commands;
 using TeamHost.Application.Features.Chats.Queries;
 using TeamHost.Domain.Entities.UserEntities;
 
@@ -54,5 +56,25 @@ public class ChatsController : Controller
         var allChats = await _mediator.Send(getAllChatsQuery);
         
         return PartialView("_ChatsPartial", allChats.Chats);
+    }
+
+    [HttpGet]
+    [Route("[action]/{chatId:int}")]
+    public async Task<IActionResult> GetDetailed(int chatId)
+    {
+        var query = new GetChatDetailedQuery(chatId);
+        var chatDetailed = await _mediator.Send(query);
+
+        return PartialView("_ChatBox", chatDetailed);
+    }
+
+    [HttpPost]
+    [Route("[action]")]
+    public async Task<IActionResult> SendMessageAsync([FromBody] SendMessageRequest request)
+    {
+        var command = new SendMessageCommand(request);
+        await _mediator.Send(command);
+
+        return Ok();
     }
 }

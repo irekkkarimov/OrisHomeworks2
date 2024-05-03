@@ -6,6 +6,6 @@ public class Message
     public string SenderName { get; set; } = null!;
     public List<Guid> ReceiverIds { get; set; } = new();
     public string Content { get; set; } = null!;
-    public Dictionary<Guid, string> Images { get; set; } = new();
+    public string? ImageUrl { get; set; }
     public bool IsSender { get; set; }
 }

@@ -8,8 +8,8 @@ const hubConnection = new signalR.HubConnectionBuilder()
 
 hubConnection.on("OnUserConnection", function(data) {
     console.log(data)
-    for (let i = 0; i < data._usersOnline.length; i++){
-        let parentNode = document.getElementById(`friend-id=${data._usersOnline[i]}`);
+    for (let i = 0; i < data.onlineUsers.length; i++){
+        let parentNode = document.getElementById(`friend-id=${data.onlineUsers[i]}`);
 
         console.log(`parent node: ${parentNode}`)
 
@@ -35,27 +35,25 @@ hubConnection.on("OnUserDisconnected", function (data)  {
 
 hubConnection.on("ReceiveMessage", function (data) {
     console.log(data)
-    var currentUserId = document.getElementById('current-user-id').value;
+    let currentUserId = document.getElementById('current-user-id').value;
 
-    var isMyMessage = currentUserId === data.whoSentId;
+    let isMyMessage = currentUserId === data.senderId;
     let senderName = data.senderName;
 
-    var img = data.images.length > 1
-        ? ""
-        : data.images[0].image
-
-    let senderMessage = `<div class="sender-name">${senderName}</div>`
-    var avatar = `<div class="messages-item__avatar"><img src="~/${img}" alt="user"></div>`;
-    var isYourMessage = isMyMessage ? '--friend-message' : '--your-message'
+    let img = data.image
+    
+    let senderMessage = `<div class="sender-name" style=${isMyMessage ? "margin-left:5px" : "margin-right:5px"}>${senderName}</div>`
+    let avatar = `<div class="messages-item__avatar"><img src="~/${img}" alt="user"></div>`;
+    let isYourMessage = isMyMessage ? '--friend-message' : '--your-message'
 
     console.log(avatar)
     // Создаем новый элемент сообщения
-    var newMessage = `
+    let newMessage = `
         <div class="messages-item ${isYourMessage}" id="your-message"">
             ${isMyMessage ? "" : avatar}
-            ${isMyMessage ? senderMessage : ""}
-            <div class="messages-item__text">${data.text}</div>
             ${isMyMessage ? "" : senderMessage}
+            <div class="messages-item__text">${data.content}</div>
+            ${isMyMessage ? senderMessage : ""}
         </div>
     `;
 
@@ -76,10 +74,10 @@ function loadChats() {
         // После загрузки чатов, привязываем обработчик клика к элементам чата
         $('.user-item').off('click').on('click', function (event) {
             event.preventDefault(); // Предотвращаем стандартное действие ссылки
-            var id = $(this).data('message-id'); // Получаем значение data-message-id
-
+            let id = $(this).data('message-id'); // Получаем значение data-message-id
+            console.log('q')
             $.ajax({
-                url: `/GetMessageInChat/${id}`,
+                url: `/Chats/GetDetailed/${id}`,
                 type: 'GET',
                 dataType: 'text',
                 success: function (data) {
@@ -107,21 +105,23 @@ function attachFormSubmitHandler() {
     // Находим форму внутри #chat-place и назначаем обработчик отправки
     $('#chat-place').on('submit', '#form-chat', function(event) {
         event.preventDefault(); // Предотвращаем стандартное действие отправки формы
-
+        console.log(document.querySelector('.chat-messages-input').value)
+        
         // Получаем данные из формы
-        const formData = {
-            message: `${document.querySelector('.chat-messages-input').value}`
+        let body = {
+            chatId: document.getElementById("chatIdInput").value,
+            content: document.querySelector('.chat-messages-input').value
         };
 
         const chatId = $('#chatIdInput').val();
 
         // Выполняем AJAX-запрос на сервер
-        fetch(`/SendMessage/${chatId}`, {
+        fetch(`Chats/SendMessage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(body)
         })
             .then()
 

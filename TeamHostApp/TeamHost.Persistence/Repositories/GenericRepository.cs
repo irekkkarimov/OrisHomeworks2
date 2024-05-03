@@ -16,6 +16,8 @@ where T : class, IEntity
     }
 
     public IQueryable<T> Entities => _context.Set<T>();
+    public DbContext Context => _context;
+
     public Task<T> GetByIdAsync(int id)
     {
         throw new NotImplementedException();

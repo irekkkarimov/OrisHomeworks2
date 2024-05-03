@@ -15,6 +15,8 @@ public class GameRepository : IGameRepository
     }
 
     public IQueryable<Game> Entities => _context.Games;
+    
+    public DbContext Context => _context;
     public Task<Game> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
