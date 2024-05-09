@@ -21,12 +21,12 @@ public class Company : BaseEntity
     /// <summary>
     /// Id страны
     /// </summary>
-    public int CountryId { get; set; }
+    public int? CountryId { get; set; }
     
     /// <summary>
     /// Страна
     /// </summary>
-    public Country Country { get; set; } = null!;
+    public Country? Country { get; set; } = null!;
     
     /// <summary>
     /// Список игр компании

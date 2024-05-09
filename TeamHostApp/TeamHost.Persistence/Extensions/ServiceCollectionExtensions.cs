@@ -22,12 +22,12 @@ public static class ServiceCollectionExtensions
 
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("POSTGRESQL_CONNECTION_STRING");
+        var connectionString = configuration.GetConnectionString("MSSQL_CONNECTION_STRING");
 
         Console.WriteLine(connectionString);
         
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(connectionString));
+            options.UseSqlServer(connectionString));
     }
 
     private static void AddRepositories(this IServiceCollection services)

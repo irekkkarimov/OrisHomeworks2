@@ -28,7 +28,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<Guid>, 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseNpgsql();
+        optionsBuilder.UseSqlServer();
         optionsBuilder.EnableDetailedErrors();
     }
 

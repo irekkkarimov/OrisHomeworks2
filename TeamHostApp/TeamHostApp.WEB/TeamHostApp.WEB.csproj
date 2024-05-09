@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <RootNamespace>TeamHostApp.WEB</RootNamespace>
+        <UserSecretsId>0d7f1276-95f1-4cb9-886d-965133fcbfa5</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
